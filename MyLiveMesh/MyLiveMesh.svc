@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="MyLiveMesh.Service1" CodeBehind="MyLiveMesh.svc.cs" %>
