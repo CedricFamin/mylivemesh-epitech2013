@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "client_meshSite", "client_meshSite\", "{860d19ff-49ff-4798-852b-e326b180c324}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjOutputReferences = "{69f6dfe1-2abf-44b7-bd5c-acd9444af799}|ClientBin|false;"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "client_mesh", "client_mesh\client_mesh.csproj", "{69f6dfe1-2abf-44b7-bd5c-acd9444af799}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{860D19FF-49FF-4798-852B-E326B180C324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{860D19FF-49FF-4798-852B-E326B180C324}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{860D19FF-49FF-4798-852B-E326B180C324}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{860D19FF-49FF-4798-852B-E326B180C324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69F6DFE1-2ABF-44B7-BD5C-ACD9444AF799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69F6DFE1-2ABF-44B7-BD5C-ACD9444AF799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69F6DFE1-2ABF-44B7-BD5C-ACD9444AF799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69F6DFE1-2ABF-44B7-BD5C-ACD9444AF799}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
