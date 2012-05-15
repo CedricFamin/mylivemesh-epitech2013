@@ -80,16 +80,46 @@ namespace MyLiveMesh
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _id = default(int);
+		private int _id;
 		
 		private string _username;
+		
+		private string _email;
+		
+		private string _password;
+		
+		private bool _superuser;
+		
+		private string _root_path;
+		
+		private System.Nullable<int> _limit_files;
+		
+		private System.Nullable<int> _limit_folder;
+		
+		private System.Nullable<int> _limit_sze;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
     partial void OnusernameChanging(string value);
     partial void OnusernameChanged();
+    partial void OnemailChanging(string value);
+    partial void OnemailChanged();
+    partial void OnpasswordChanging(string value);
+    partial void OnpasswordChanged();
+    partial void OnsuperuserChanging(bool value);
+    partial void OnsuperuserChanged();
+    partial void Onroot_pathChanging(string value);
+    partial void Onroot_pathChanged();
+    partial void Onlimit_filesChanging(System.Nullable<int> value);
+    partial void Onlimit_filesChanged();
+    partial void Onlimit_folderChanging(System.Nullable<int> value);
+    partial void Onlimit_folderChanged();
+    partial void Onlimit_szeChanging(System.Nullable<int> value);
+    partial void Onlimit_szeChanged();
     #endregion
 		
 		public User()
@@ -97,12 +127,23 @@ namespace MyLiveMesh
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int id
 		{
 			get
 			{
 				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
 			}
 		}
 		
@@ -122,6 +163,146 @@ namespace MyLiveMesh
 					this._username = value;
 					this.SendPropertyChanged("username");
 					this.OnusernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this.OnemailChanging(value);
+					this.SendPropertyChanging();
+					this._email = value;
+					this.SendPropertyChanged("email");
+					this.OnemailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string password
+		{
+			get
+			{
+				return this._password;
+			}
+			set
+			{
+				if ((this._password != value))
+				{
+					this.OnpasswordChanging(value);
+					this.SendPropertyChanging();
+					this._password = value;
+					this.SendPropertyChanged("password");
+					this.OnpasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_superuser", DbType="Bit NOT NULL")]
+		public bool superuser
+		{
+			get
+			{
+				return this._superuser;
+			}
+			set
+			{
+				if ((this._superuser != value))
+				{
+					this.OnsuperuserChanging(value);
+					this.SendPropertyChanging();
+					this._superuser = value;
+					this.SendPropertyChanged("superuser");
+					this.OnsuperuserChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_root_path", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string root_path
+		{
+			get
+			{
+				return this._root_path;
+			}
+			set
+			{
+				if ((this._root_path != value))
+				{
+					this.Onroot_pathChanging(value);
+					this.SendPropertyChanging();
+					this._root_path = value;
+					this.SendPropertyChanged("root_path");
+					this.Onroot_pathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_limit_files", DbType="Int")]
+		public System.Nullable<int> limit_files
+		{
+			get
+			{
+				return this._limit_files;
+			}
+			set
+			{
+				if ((this._limit_files != value))
+				{
+					this.Onlimit_filesChanging(value);
+					this.SendPropertyChanging();
+					this._limit_files = value;
+					this.SendPropertyChanged("limit_files");
+					this.Onlimit_filesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_limit_folder", DbType="Int")]
+		public System.Nullable<int> limit_folder
+		{
+			get
+			{
+				return this._limit_folder;
+			}
+			set
+			{
+				if ((this._limit_folder != value))
+				{
+					this.Onlimit_folderChanging(value);
+					this.SendPropertyChanging();
+					this._limit_folder = value;
+					this.SendPropertyChanged("limit_folder");
+					this.Onlimit_folderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_limit_sze", DbType="Int")]
+		public System.Nullable<int> limit_sze
+		{
+			get
+			{
+				return this._limit_sze;
+			}
+			set
+			{
+				if ((this._limit_sze != value))
+				{
+					this.Onlimit_szeChanging(value);
+					this.SendPropertyChanging();
+					this._limit_sze = value;
+					this.SendPropertyChanged("limit_sze");
+					this.Onlimit_szeChanged();
 				}
 			}
 		}
