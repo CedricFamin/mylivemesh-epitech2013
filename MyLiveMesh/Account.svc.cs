@@ -25,8 +25,10 @@ namespace MyLiveMesh
                 email=email,
                 password=password,
                 superuser=false,
-                root_path="/"
+                root_path=username
             };
+
+            System.IO.Directory.CreateDirectory(System.IO.Path.Combine("D:\\Work\\Epitech\\Tech4\\mylivemesh\\MyLiveMesh", "upload_files", user.root_path));
             db.Users.InsertOnSubmit(user);
             db.SubmitChanges();
             return true;
