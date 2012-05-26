@@ -11,6 +11,7 @@ namespace MyLiveMesh
     {
         bool Register(string username, string email, string password);
         User Login(string username, string password);
-        void Update(User updateUser);
+        bool Update(User updateUser);
+        bool Delete(int id);
     }
 }

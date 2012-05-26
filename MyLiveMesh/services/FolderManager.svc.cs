@@ -5,24 +5,22 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-
-namespace MyLiveMesh
+namespace MyLiveMesh.services
 {
-
     [ServiceContract(Namespace = "")]
     [SilverlightFaultBehavior]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
-    public class Account : IAccount
+    public class FolderManager : IFolderManager
     {
         #region Fields
         private CompositionContainer _container;
-        
-        [Import(typeof(IAccount))]
-        private IAccount _account = null;
+
+        [Import(typeof(IFolderManager))]
+        private IFolderManager _manager = null;
         #endregion
 
         #region CTor
-        Account()
+        FolderManager()
         {
             AggregateCatalog catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new AssemblyCatalog(typeof(Account).Assembly));
@@ -41,27 +39,21 @@ namespace MyLiveMesh
 
         #region OperationContract
         [OperationContract]
-        public bool Register(string username, string email, string password)
+        public bool Create(int userId, string name)
         {
-            return this._account.Register(username, email, password);
+            return this._manager.Create(userId, name);
         }
 
         [OperationContract]
-        public User Login(string username, string password)
+        public bool Delete(int folderId)
         {
-            return this._account.Login(username, password);
+            return this._manager.Delete(folderId);
         }
 
         [OperationContract]
-        public bool Update(User updateUser)
+        public bool Rename(int folderId, string name)
         {
-            return this._account.Update(updateUser);
-        }
-
-        [OperationContract]
-        public bool Delete(int id)
-        {
-            return this._account.Delete(id);
+            return this._manager.Rename(folderId, name);
         }
         #endregion
     }

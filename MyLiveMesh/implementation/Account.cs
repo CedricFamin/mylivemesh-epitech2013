@@ -34,13 +34,17 @@ namespace MyLiveMesh.implementation
 
         public User Login(string username, string password)
         {
-            var users = from u in db.Users where u.username == username && u.password == password select u;
-            if (users.Count() != 1)
+            try
+            {
+                return (from u in db.Users where u.username == username && u.password == password select u).Single();
+            }
+            catch
+            {
                 return null;
-            return users.First();
+            }
         }
 
-        public void Update(User updateUser)
+        public bool Update(User updateUser)
         {
             try
             {
@@ -48,10 +52,26 @@ namespace MyLiveMesh.implementation
                 user.password = updateUser.password;
                 user.email = updateUser.email;
                 db.SubmitChanges();
+                return true;
             }
             catch
             {
-                
+                return false;
+            }
+        }
+
+        public bool Delete(int id)
+        {
+            try
+            {
+                var user = (from u in db.Users where u.id == id select u).Single();
+                db.Users.DeleteOnSubmit(user);
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

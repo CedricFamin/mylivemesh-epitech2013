@@ -11,6 +11,18 @@
       <Column Name="limit_files" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="limit_folder" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="limit_sze" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_Folder" Member="Folders" ThisKey="id" OtherKey="user" Type="Folder" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Folder" Member="Folders">
+    <Type Name="Folder">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[user]" Member="user" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="parent" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Folder_Folder" Member="Folders" ThisKey="id" OtherKey="parent" Type="Folder" />
+      <Association Name="Folder_Folder" Member="Folder1" ThisKey="parent" OtherKey="id" Type="Folder" IsForeignKey="true" />
+      <Association Name="User_Folder" Member="User1" ThisKey="user" OtherKey="id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

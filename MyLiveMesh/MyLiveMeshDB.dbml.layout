@@ -8,5 +8,25 @@
         <elementListCompartment Id="a8b3a6ed-fa1d-4d42-b7a4-91609dc9fe31" absoluteBounds="4.14, 1.71, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="9b121980-d990-477f-be84-ce80c7eb80f1" absoluteBounds="7, 1.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/MyLiveMeshDBDataContext/Folder" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bfe246e9-9246-45cb-9f13-d4d90b573f72" absoluteBounds="7.0150000000000006, 1.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.70242346379207 : 3.07859537760417); (7.70242346379207 : 3.32859537760417); (8.31174684745593 : 3.32859537760417); (8.31174684745593 : 3.07859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/MyLiveMeshDBDataContext/Folder/Folder_Folder" />
+      <nodes>
+        <classShapeMoniker Id="9b121980-d990-477f-be84-ce80c7eb80f1" />
+        <classShapeMoniker Id="9b121980-d990-477f-be84-ce80c7eb80f1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.125 : 2.28929768880208); (7 : 2.28929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MyLiveMeshDBDataContext/User/User_Folder" />
+      <nodes>
+        <classShapeMoniker Id="5f30a7ca-0781-4bbd-8ce0-c3e0d5ad6f45" />
+        <classShapeMoniker Id="9b121980-d990-477f-be84-ce80c7eb80f1" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
