@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -54,16 +55,12 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account.svc" />
+    <Content Include="services\Account.svc" />
     <Content Include="App_Data\MLMDB.mdf" />
     <Content Include="App_Data\MLMDB_log.ldf">
       <DependentUpon>MLMDB.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\MyLiveMeshDB.mdf" />
-    <Content Include="App_Data\MyLiveMeshDB_log.ldf">
-      <DependentUpon>MyLiveMeshDB.mdf</DependentUpon>
-    </Content>
-    <Content Include="MyLiveMesh.svc" />
+    <Content Include="services\MyLiveMesh.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -73,10 +70,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.svc.cs">
+    <Compile Include="implementation\Account.cs" />
+    <Compile Include="services\Account.svc.cs">
       <DependentUpon>Account.svc</DependentUpon>
     </Compile>
-    <Compile Include="MyLiveMesh.svc.cs">
+    <Compile Include="IAccount.cs" />
+    <Compile Include="services\MyLiveMesh.svc.cs">
       <DependentUpon>MyLiveMesh.svc</DependentUpon>
     </Compile>
     <Compile Include="IMyLiveMesh.cs" />
