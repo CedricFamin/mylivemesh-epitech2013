@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="MyLiveMesh.services.FolderManager" CodeBehind="FolderManager.svc.cs" %>
