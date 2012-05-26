@@ -9,7 +9,7 @@ namespace MyLiveMesh
     interface IFolderManager
     {
         WebResult Create(int userId, string name);
-        WebResult Delete(int folderId);
-        WebResult Rename(int folderId, string name);
+        WebResult Delete(int userId, string name);
+        WebResult Rename(int userId, string name, string newName);
     }
 }

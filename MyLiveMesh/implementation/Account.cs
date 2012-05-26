@@ -33,7 +33,7 @@ namespace MyLiveMesh.implementation
                 superuser = false,
                 root_path = username
             };
-            System.IO.Directory.CreateDirectory(System.IO.Path.Combine("D:\\Work\\Epitech\\Tech4\\mylivemesh\\MyLiveMesh", "upload_files", user.root_path));
+            System.IO.Directory.CreateDirectory(System.IO.Path.Combine(Config.ROOT_PATH, user.root_path));
             db.Users.InsertOnSubmit(user);
             db.SubmitChanges();
             return result;

@@ -47,15 +47,15 @@ namespace MyLiveMesh.services
         }
 
         [OperationContract]
-        public WebResult Delete(int folderId)
+        public WebResult Delete(int userId, string name)
         {
-            return this._manager.Delete(folderId);
+            return this._manager.Delete(userId, name);
         }
 
         [OperationContract]
-        public WebResult Rename(int folderId, string name)
+        public WebResult Rename(int userId, string name, string newName)
         {
-            return this._manager.Rename(folderId, name);
+            return this._manager.Rename(userId, name, newName);
         }
         #endregion
     }

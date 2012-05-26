@@ -15,6 +15,10 @@ namespace MyLiveMesh.Utils
             USER_NOT_FOUND,
             INFORMATION_REQUIRED,
             USER_ALREADY_EXIST,
+            CANNOT_CREATE_DIRECTORY,
+            DIRECTORY_NOT_FOUND,
+            CANNOT_DELETE_DIRECTORY,
+            CANNOT_RENAME_DIRECTORY
 
         }
 
