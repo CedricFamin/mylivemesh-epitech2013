@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MyLiveMesh.Utils;
 
 namespace MyLiveMesh
 {
     interface IFolderManager
     {
-        bool Create(int userId, string name);
-        bool Delete(int folderId);
-        bool Rename(int folderId, string name);
+        WebResult Create(int userId, string name);
+        WebResult Delete(int folderId);
+        WebResult Rename(int folderId, string name);
     }
 }

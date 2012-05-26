@@ -5,6 +5,8 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using MyLiveMesh.Utils;
+using MyLiveMesh.LinqToSQL;
 
 namespace MyLiveMesh
 {
@@ -41,25 +43,25 @@ namespace MyLiveMesh
 
         #region OperationContract
         [OperationContract]
-        public bool Register(string username, string email, string password)
+        public WebResult Register(string username, string email, string password)
         {
             return this._account.Register(username, email, password);
         }
 
         [OperationContract]
-        public User Login(string username, string password)
+        public WebResult<User> Login(string username, string password)
         {
             return this._account.Login(username, password);
         }
 
         [OperationContract]
-        public bool Update(User updateUser)
+        public WebResult Update(User updateUser)
         {
             return this._account.Update(updateUser);
         }
 
         [OperationContract]
-        public bool Delete(int id)
+        public WebResult Delete(int id)
         {
             return this._account.Delete(id);
         }

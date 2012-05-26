@@ -1,4 +1,4 @@
-namespace MyLiveMesh
+namespace MyLiveMesh.LinqToSQL
 {
     partial class MyLiveMeshDBDataContext
     {

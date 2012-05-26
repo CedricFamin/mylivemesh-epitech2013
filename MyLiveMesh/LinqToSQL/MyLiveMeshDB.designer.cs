@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyLiveMesh
+namespace MyLiveMesh.LinqToSQL
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -33,9 +33,6 @@ namespace MyLiveMesh
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
-    partial void InsertFolder(Folder instance);
-    partial void UpdateFolder(Folder instance);
-    partial void DeleteFolder(Folder instance);
     #endregion
 		
 		public MyLiveMeshDBDataContext() : 
@@ -75,14 +72,6 @@ namespace MyLiveMesh
 				return this.GetTable<User>();
 			}
 		}
-		
-		public System.Data.Linq.Table<Folder> Folders
-		{
-			get
-			{
-				return this.GetTable<Folder>();
-			}
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
@@ -108,8 +97,6 @@ namespace MyLiveMesh
 		private System.Nullable<int> _limit_folder;
 		
 		private System.Nullable<int> _limit_sze;
-		
-		private EntitySet<Folder> _Folders;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -137,7 +124,6 @@ namespace MyLiveMesh
 		
 		public User()
 		{
-			this._Folders = new EntitySet<Folder>(new Action<Folder>(this.attach_Folders), new Action<Folder>(this.detach_Folders));
 			OnCreated();
 		}
 		
@@ -321,19 +307,6 @@ namespace MyLiveMesh
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Folder", Storage="_Folders", ThisKey="id", OtherKey="user")]
-		public EntitySet<Folder> Folders
-		{
-			get
-			{
-				return this._Folders;
-			}
-			set
-			{
-				this._Folders.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -352,258 +325,6 @@ namespace MyLiveMesh
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Folders(Folder entity)
-		{
-			this.SendPropertyChanging();
-			entity.User1 = this;
-		}
-		
-		private void detach_Folders(Folder entity)
-		{
-			this.SendPropertyChanging();
-			entity.User1 = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Folder")]
-	public partial class Folder : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _name;
-		
-		private int _user;
-		
-		private System.Nullable<int> _parent;
-		
-		private EntitySet<Folder> _Folders;
-		
-		private EntityRef<Folder> _Folder1;
-		
-		private EntityRef<User> _User1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OnuserChanging(int value);
-    partial void OnuserChanged();
-    partial void OnparentChanging(System.Nullable<int> value);
-    partial void OnparentChanged();
-    #endregion
-		
-		public Folder()
-		{
-			this._Folders = new EntitySet<Folder>(new Action<Folder>(this.attach_Folders), new Action<Folder>(this.detach_Folders));
-			this._Folder1 = default(EntityRef<Folder>);
-			this._User1 = default(EntityRef<User>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[user]", Storage="_user", DbType="Int NOT NULL")]
-		public int user
-		{
-			get
-			{
-				return this._user;
-			}
-			set
-			{
-				if ((this._user != value))
-				{
-					this.OnuserChanging(value);
-					this.SendPropertyChanging();
-					this._user = value;
-					this.SendPropertyChanged("user");
-					this.OnuserChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parent", DbType="Int")]
-		public System.Nullable<int> parent
-		{
-			get
-			{
-				return this._parent;
-			}
-			set
-			{
-				if ((this._parent != value))
-				{
-					if (this._Folder1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnparentChanging(value);
-					this.SendPropertyChanging();
-					this._parent = value;
-					this.SendPropertyChanged("parent");
-					this.OnparentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Folder_Folder", Storage="_Folders", ThisKey="id", OtherKey="parent")]
-		public EntitySet<Folder> Folders
-		{
-			get
-			{
-				return this._Folders;
-			}
-			set
-			{
-				this._Folders.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Folder_Folder", Storage="_Folder1", ThisKey="parent", OtherKey="id", IsForeignKey=true)]
-		public Folder Folder1
-		{
-			get
-			{
-				return this._Folder1.Entity;
-			}
-			set
-			{
-				Folder previousValue = this._Folder1.Entity;
-				if (((previousValue != value) 
-							|| (this._Folder1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Folder1.Entity = null;
-						previousValue.Folders.Remove(this);
-					}
-					this._Folder1.Entity = value;
-					if ((value != null))
-					{
-						value.Folders.Add(this);
-						this._parent = value.id;
-					}
-					else
-					{
-						this._parent = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Folder1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Folder", Storage="_User1", ThisKey="user", OtherKey="id", IsForeignKey=true)]
-		public User User1
-		{
-			get
-			{
-				return this._User1.Entity;
-			}
-			set
-			{
-				User previousValue = this._User1.Entity;
-				if (((previousValue != value) 
-							|| (this._User1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User1.Entity = null;
-						previousValue.Folders.Remove(this);
-					}
-					this._User1.Entity = value;
-					if ((value != null))
-					{
-						value.Folders.Add(this);
-						this._user = value.id;
-					}
-					else
-					{
-						this._user = default(int);
-					}
-					this.SendPropertyChanged("User1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Folders(Folder entity)
-		{
-			this.SendPropertyChanging();
-			entity.Folder1 = this;
-		}
-		
-		private void detach_Folders(Folder entity)
-		{
-			this.SendPropertyChanging();
-			entity.Folder1 = null;
 		}
 	}
 }

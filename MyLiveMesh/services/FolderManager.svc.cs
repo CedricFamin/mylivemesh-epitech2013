@@ -5,6 +5,8 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using MyLiveMesh.Utils;
+
 namespace MyLiveMesh.services
 {
     [ServiceContract(Namespace = "")]
@@ -39,19 +41,19 @@ namespace MyLiveMesh.services
 
         #region OperationContract
         [OperationContract]
-        public bool Create(int userId, string name)
+        public WebResult Create(int userId, string name)
         {
             return this._manager.Create(userId, name);
         }
 
         [OperationContract]
-        public bool Delete(int folderId)
+        public WebResult Delete(int folderId)
         {
             return this._manager.Delete(folderId);
         }
 
         [OperationContract]
-        public bool Rename(int folderId, string name)
+        public WebResult Rename(int folderId, string name)
         {
             return this._manager.Rename(folderId, name);
         }

@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using System.ServiceModel.Web;
+using MyLiveMesh.Utils;
+using MyLiveMesh.LinqToSQL;
 
 namespace MyLiveMesh
 {
     interface IAccount
     {
-        bool Register(string username, string email, string password);
-        User Login(string username, string password);
-        bool Update(User updateUser);
-        bool Delete(int id);
+        WebResult Register(string username, string email, string password);
+        WebResult<User> Login(string username, string password);
+        WebResult Update(User updateUser);
+        WebResult Delete(int id);
     }
 }

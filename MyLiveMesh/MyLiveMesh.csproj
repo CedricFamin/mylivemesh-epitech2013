@@ -61,7 +61,6 @@
       <DependentUpon>MLMDB.mdf</DependentUpon>
     </Content>
     <Content Include="services\FolderManager.svc" />
-    <Content Include="services\MyLiveMesh.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -81,14 +80,10 @@
     <Compile Include="services\FolderManager.svc.cs">
       <DependentUpon>FolderManager.svc</DependentUpon>
     </Compile>
-    <Compile Include="services\MyLiveMesh.svc.cs">
-      <DependentUpon>MyLiveMesh.svc</DependentUpon>
-    </Compile>
-    <Compile Include="IMyLiveMesh.cs" />
-    <Compile Include="MyLiveMeshDB.cs">
+    <Compile Include="LinqToSQL\MyLiveMeshDB.cs">
       <DependentUpon>MyLiveMeshDB.dbml</DependentUpon>
     </Compile>
-    <Compile Include="MyLiveMeshDB.designer.cs">
+    <Compile Include="LinqToSQL\MyLiveMeshDB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MyLiveMeshDB.dbml</DependentUpon>
@@ -100,10 +95,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="SilverlightFaultBehavior.cs" />
+    <Compile Include="Utils\WebResult.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="MyLiveMeshDB.dbml">
+    <None Include="LinqToSQL\MyLiveMeshDB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>MyLiveMeshDB.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -117,7 +113,7 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MyLiveMeshDB.dbml.layout">
+    <None Include="LinqToSQL\MyLiveMeshDB.dbml.layout">
       <DependentUpon>MyLiveMeshDB.dbml</DependentUpon>
     </None>
   </ItemGroup>

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using MyLiveMesh.LinqToSQL;
+using MyLiveMesh.Utils;
 
 namespace MyLiveMesh.implementation
 {
@@ -12,44 +14,19 @@ namespace MyLiveMesh.implementation
     {
         MyLiveMeshDBDataContext db = new MyLiveMeshDBDataContext();
 
-        public bool Create(int userId, string name)
+        public WebResult Create(int userId, string name)
         {
-            try
-            {
-                Folder folder = new Folder()
-                {
-                    name = name,
-                    User1 = (from u in db.Users where u.id == userId select u).Single()
-                };
-
-                db.Folders.InsertOnSubmit(folder);
-                db.SubmitChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return new WebResult();
         }
 
-        public bool Delete(int folderId)
+        public WebResult Delete(int folderId)
         {
-            try
-            {
-                Folder entity = (from f in db.Folders where f.id == folderId select f).Single();
-                db.Folders.DeleteOnSubmit(entity);
-                db.SubmitChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return new WebResult();
         }
 
-        public bool Rename(int folderId, string name)
+        public WebResult Rename(int folderId, string name)
         {
-            throw new NotImplementedException();
+            return new WebResult();
         }
     }
 }

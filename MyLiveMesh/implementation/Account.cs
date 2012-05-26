@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using MyLiveMesh.Utils;
+using MyLiveMesh.LinqToSQL;
 
 namespace MyLiveMesh.implementation
 {
@@ -12,11 +14,17 @@ namespace MyLiveMesh.implementation
     {
         MyLiveMeshDBDataContext db = new MyLiveMeshDBDataContext();
 
-        public bool Register(string username, string email, string password)
+        public WebResult Register(string username, string email, string password)
         {
+            WebResult result = new WebResult();
+
             var users = from u in db.Users where u.username == username || u.email == email select u;
-            if (password == "" || users.Count() > 0)
-                return false;
+            if (username == "" || password == "" || email == "")
+                result.ErrorCode = WebResult.ErrorCodeList.INFORMATION_REQUIRED;
+            else if (users.Count() > 0)
+                result.ErrorCode = WebResult.ErrorCodeList.USER_ALREADY_EXIST;
+            if (result.ErrorCode != WebResult.ErrorCodeList.SUCCESS)
+                return result;
             User user = new User()
             {
                 username = username,
@@ -25,26 +33,25 @@ namespace MyLiveMesh.implementation
                 superuser = false,
                 root_path = username
             };
-            // TODO: decommenter
-            // System.IO.Directory.CreateDirectory(System.IO.Path.Combine("D:\\Work\\Epitech\\Tech4\\mylivemesh\\MyLiveMesh", "upload_files", user.root_path));
+            System.IO.Directory.CreateDirectory(System.IO.Path.Combine("D:\\Work\\Epitech\\Tech4\\mylivemesh\\MyLiveMesh", "upload_files", user.root_path));
             db.Users.InsertOnSubmit(user);
             db.SubmitChanges();
-            return true;
+            return result;
         }
 
-        public User Login(string username, string password)
+        public WebResult<User> Login(string username, string password)
         {
             try
             {
-                return (from u in db.Users where u.username == username && u.password == password select u).Single();
+                return new WebResult<User>((from u in db.Users where u.username == username && u.password == password select u).Single()); ;
             }
             catch
             {
-                return null;
+                return new WebResult<User>(WebResult.ErrorCodeList.USER_NOT_FOUND);
             }
         }
 
-        public bool Update(User updateUser)
+        public WebResult Update(User updateUser)
         {
             try
             {
@@ -52,26 +59,26 @@ namespace MyLiveMesh.implementation
                 user.password = updateUser.password;
                 user.email = updateUser.email;
                 db.SubmitChanges();
-                return true;
+                return new WebResult();
             }
             catch
             {
-                return false;
+                return new WebResult(WebResult.ErrorCodeList.USER_NOT_FOUND);
             }
         }
 
-        public bool Delete(int id)
+        public WebResult Delete(int id)
         {
             try
             {
                 var user = (from u in db.Users where u.id == id select u).Single();
                 db.Users.DeleteOnSubmit(user);
                 db.SubmitChanges();
-                return true;
+                return new WebResult();
             }
             catch
             {
-                return false;
+                return new WebResult(WebResult.ErrorCodeList.USER_NOT_FOUND);
             }
         }
     }
