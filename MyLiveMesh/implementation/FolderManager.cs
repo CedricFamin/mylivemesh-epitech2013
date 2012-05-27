@@ -6,6 +6,7 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using MyLiveMesh.LinqToSQL;
 using MyLiveMesh.Utils;
+using System.IO;
 
 namespace MyLiveMesh.implementation
 {
@@ -59,6 +60,43 @@ namespace MyLiveMesh.implementation
             else
                 return new WebResult(WebResult.ErrorCodeList.DIRECTORY_NOT_FOUND);
             return new WebResult();
+        }
+
+
+        public WebResult<List<string>> DirList(int userId)
+        {
+            List<string> dirs = new List<string>();
+
+            var user = (from u in db.Users where u.id == userId select u).SingleOrDefault();
+
+            if (user == default(User))
+                return new WebResult<List<string>>(WebResult.ErrorCodeList.USER_NOT_FOUND);
+
+            string path = System.IO.Path.Combine(Config.ROOT_PATH, user.username);
+            DirectoryInfo dirInfo = new DirectoryInfo(path);
+            foreach (DirectoryInfo directory in dirInfo.GetDirectories())
+            {
+                dirs.Add(directory.Name);
+            }
+            return new WebResult<List<string>>(dirs);
+        }
+
+        public WebResult<List<string>> FileList(int userId, string folder)
+        {
+            List<string> files = new List<string>();
+
+            var user = (from u in db.Users where u.id == userId select u).SingleOrDefault();
+
+            if (user == default(User))
+                return new WebResult<List<string>>(WebResult.ErrorCodeList.USER_NOT_FOUND);
+
+            string path = System.IO.Path.Combine(Config.ROOT_PATH, user.username, folder);
+            DirectoryInfo dirInfo = new DirectoryInfo(path);
+            foreach (FileInfo file in dirInfo.GetFiles())
+            {
+                files.Add(file.Name);
+            }
+            return new WebResult<List<string>>(files);
         }
     }
 }

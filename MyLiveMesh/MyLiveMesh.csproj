@@ -96,7 +96,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="SilverlightFaultBehavior.cs" />
-    <Compile Include="Utils\WebResult.cs" />
+    <Compile Include="Utils\WebResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -116,6 +118,7 @@
   <ItemGroup>
     <None Include="LinqToSQL\MyLiveMeshDB.dbml.layout">
       <DependentUpon>MyLiveMeshDB.dbml</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

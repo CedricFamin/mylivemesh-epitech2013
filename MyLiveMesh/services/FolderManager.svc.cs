@@ -6,6 +6,8 @@ using System.ServiceModel.Activation;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using MyLiveMesh.Utils;
+using System.Collections.Generic;
+using System.IO;
 
 namespace MyLiveMesh.services
 {
@@ -56,6 +58,18 @@ namespace MyLiveMesh.services
         public WebResult Rename(int userId, string name, string newName)
         {
             return this._manager.Rename(userId, name, newName);
+        }
+
+        [OperationContract]
+        public WebResult<List<string>> DirList(int userId)
+        {
+            return this._manager.DirList(userId);
+        }
+
+        [OperationContract]
+        public WebResult<List<string>> FileList(int userId, string folder)
+        {
+            return this._manager.FileList(userId, folder);
         }
         #endregion
     }
