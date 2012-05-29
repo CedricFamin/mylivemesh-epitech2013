@@ -16,25 +16,34 @@ namespace client_mesh.ViewModel
     public class MainPageViewModel : BindableObject
     {
         public ICommand Login { get; private set; }
-        private ServiceReference.Account accountService { get; set; }
+        private ServiceReference.AccountClient accountService { get; set; }
+        private string _username;
+
+        public string Username
+        {
+            get { return _username; }
+            set { 
+                _username = value;
+                RaisePropertyChange("Username");
+            }
+        }
 
         public MainPageViewModel()
         {
             Login = new RelayCommand((param) => LoginBody(param as string[]));
             accountService = new ServiceReference.AccountClient();
+            accountService.LoginCompleted += new EventHandler<LoginCompletedEventArgs>(OnEndLogin);
+            
         }
 
-        void OnEndLoginBody(IAsyncResult result)
+        private void OnEndLogin(object sender, LoginCompletedEventArgs args)
         {
-            int i = 1;
+            Username = args.Result.Value.username;
         }
 
         private void LoginBody(string[] param)
         {
-            OpenFileDialog file = new OpenFileDialog();
-            file.ShowDialog();
-            int test = ((User)(null)).GetHashCode();
-            accountService.BeginLogin("Mediagora", "test", new AsyncCallback(OnEndLoginBody), null);
+            accountService.LoginAsync("Mediagora", "toto");
         }
     }
 }

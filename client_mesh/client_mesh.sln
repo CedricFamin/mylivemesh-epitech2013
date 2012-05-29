@@ -21,6 +21,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "client_meshSite", "client_m
 		VWDPort = "1934"
 		ProjOutputReferences = "{69f6dfe1-2abf-44b7-bd5c-acd9444af799}|ClientBin|false;"
 	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
+		{BA7C9746-CDD1-47F2-8184-06531C534F5E} = {BA7C9746-CDD1-47F2-8184-06531C534F5E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "client_mesh", "client_mesh\client_mesh.csproj", "{69F6DFE1-2ABF-44B7-BD5C-ACD9444AF799}"
 	ProjectSection(ProjectDependencies) = postProject

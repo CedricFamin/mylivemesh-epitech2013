@@ -12,7 +12,6 @@ namespace MyLiveMesh
 {
 
     [ServiceContract(Namespace = "")]
-    [SilverlightFaultBehavior]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class Account : IAccount
     {

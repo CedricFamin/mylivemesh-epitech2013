@@ -12,7 +12,6 @@ using System.IO;
 namespace MyLiveMesh.services
 {
     [ServiceContract(Namespace = "")]
-    [SilverlightFaultBehavior]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class FolderManager : IFolderManager
     {

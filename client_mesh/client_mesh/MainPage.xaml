@@ -14,7 +14,7 @@
 
 	<Grid x:Name="LayoutRoot" Background="#cccccc">
 		<PasswordBox Margin="388,359,443,0" ToolTipService.ToolTip="enter password" Height="25" VerticalAlignment="Top"/>
-		<TextBox x:Name="username" Height="25" Margin="388,310,443,0" TextWrapping="Wrap" VerticalAlignment="Top" ToolTipService.ToolTip="enter username"/>
+		<TextBox x:Name="username" Height="25" Margin="388,310,443,0" TextWrapping="Wrap" VerticalAlignment="Top" ToolTipService.ToolTip="enter username" Text="{Binding Path=Username, Mode=TwoWay}" />
 		<TextBlock Height="14" Margin="435,292,476,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
 		<TextBlock Height="16" Margin="435,339,476,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top"/>
 		<CheckBox Content="Remember me" Height="18" Margin="388,0,443,362" VerticalAlignment="Bottom"/>

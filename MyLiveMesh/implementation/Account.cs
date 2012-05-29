@@ -41,6 +41,7 @@ namespace MyLiveMesh.implementation
 
         public WebResult<User> Login(string username, string password)
         {
+            int test = Convert.ToInt32("sdhfgsjf");
             try
             {
                 return new WebResult<User>((from u in db.Users where u.username == username && u.password == password select u).Single()); ;
