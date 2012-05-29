@@ -58,6 +58,9 @@ namespace MyLiveMesh.implementation
                 var user = (from u in db.Users where u.id == updateUser.id select u).Single();
                 user.password = updateUser.password;
                 user.email = updateUser.email;
+                user.limit_folder = updateUser.limit_folder;
+                user.limit_files = updateUser.limit_files;
+                user.limit_sze = updateUser.limit_sze;
                 db.SubmitChanges();
                 return new WebResult();
             }

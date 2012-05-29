@@ -21,6 +21,11 @@ namespace MyLiveMesh.implementation
 
             if (user == default(User))
                 return new WebResult(WebResult.ErrorCodeList.USER_NOT_FOUND);
+            if (user.limit_folder != null)
+            {
+                if (this.DirList(userId).Value.Count >= user.limit_folder)
+                    return new WebResult(WebResult.ErrorCodeList.CANNOT_CREATE_DIRECTORY);
+            }
             string path = System.IO.Path.Combine(Config.ROOT_PATH, user.username, name);
             try   { System.IO.Directory.CreateDirectory(path); }
             catch { return new WebResult(WebResult.ErrorCodeList.CANNOT_CREATE_DIRECTORY); }
@@ -97,6 +102,27 @@ namespace MyLiveMesh.implementation
                 files.Add(file.Name);
             }
             return new WebResult<List<string>>(files);
+        }
+
+        public WebResult<byte[]> GetFileFrom(int userId, string folder, string file)
+        {
+            WebResult<byte[]> result = new WebResult<byte[]>();
+
+            var user = (from u in db.Users where u.id == userId select u).SingleOrDefault();
+
+            if (user == default(User))
+                return new WebResult<byte[]>(WebResult.ErrorCodeList.USER_NOT_FOUND);
+            string path = System.IO.Path.Combine(Config.ROOT_PATH, user.username, folder, file);
+            if (System.IO.File.Exists(path))
+            {
+                FileStream stream = new FileStream(path, FileMode.Open);
+                result.Value = new byte[stream.Length];
+                stream.Read(result.Value, 0, (int)stream.Length);
+            }
+            else
+                return new WebResult<byte[]>(WebResult.ErrorCodeList.FILE_NOT_FOUND);
+
+            return result;
         }
     }
 }

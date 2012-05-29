@@ -18,7 +18,8 @@ namespace MyLiveMesh.Utils
             CANNOT_CREATE_DIRECTORY,
             DIRECTORY_NOT_FOUND,
             CANNOT_DELETE_DIRECTORY,
-            CANNOT_RENAME_DIRECTORY
+            CANNOT_RENAME_DIRECTORY,
+            FILE_NOT_FOUND
 
         }
 

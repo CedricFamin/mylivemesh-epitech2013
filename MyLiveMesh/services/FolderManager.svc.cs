@@ -71,6 +71,12 @@ namespace MyLiveMesh.services
         {
             return this._manager.FileList(userId, folder);
         }
+
+        [OperationContract]
+        public WebResult<byte[]> GetFileFrom(int userId, string folder, string file)
+        {
+            return this._manager.GetFileFrom(userId, folder, file);
+        }
         #endregion
     }
 }
