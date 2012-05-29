@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3500/services/Account.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.LinqToSQL" />
+  <xs:complexType name="WebResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" type="tns:WebResult.ErrorCodeList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WebResult" nillable="true" type="tns:WebResult" />
+  <xs:simpleType name="WebResult.ErrorCodeList">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SUCCESS" />
+      <xs:enumeration value="USER_NOT_FOUND" />
+      <xs:enumeration value="INFORMATION_REQUIRED" />
+      <xs:enumeration value="USER_ALREADY_EXIST" />
+      <xs:enumeration value="CANNOT_CREATE_DIRECTORY" />
+      <xs:enumeration value="DIRECTORY_NOT_FOUND" />
+      <xs:enumeration value="CANNOT_DELETE_DIRECTORY" />
+      <xs:enumeration value="CANNOT_RENAME_DIRECTORY" />
+      <xs:enumeration value="FILE_NOT_FOUND" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WebResult.ErrorCodeList" nillable="true" type="tns:WebResult.ErrorCodeList" />
+  <xs:complexType name="WebResultOfUserBZq_SeKvr">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="WebResultOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="User" Namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.LinqToSQL" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WebResult">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MyLiveMesh.LinqToSQL" minOccurs="0" name="Value" nillable="true" type="q1:User" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WebResultOfUserBZq_SeKvr" nillable="true" type="tns:WebResultOfUserBZq_SeKvr" />
+</xs:schema>
