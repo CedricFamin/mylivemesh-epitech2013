@@ -1,22 +1,15 @@
 ﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using client_mesh.ServiceReference;
 using client_mesh.Utils;
 
-namespace client_mesh.ViewModel
+namespace client_mesh.ViewModels
 {
-    public class MainPageViewModel : BindableObject
-    {
-        public ICommand Login { get; private set; }
-        private ServiceReference.AccountClient accountService { get; set; }
+	public class LoginPageViewModel : BindableObject
+	{
+
+		public ICommand Login { get; private set; }
+        private AccountClient accountService { get; set; }
         private string _username;
 
         public string Username
@@ -27,23 +20,29 @@ namespace client_mesh.ViewModel
                 RaisePropertyChange("Username");
             }
         }
-
-        public MainPageViewModel()
+        
+        public LoginPageViewModel()
         {
             Login = new RelayCommand((param) => LoginBody(param as string[]));
-            accountService = new ServiceReference.AccountClient();
+            accountService = new AccountClient();
             accountService.LoginCompleted += new EventHandler<LoginCompletedEventArgs>(OnEndLogin);
-            
+            accountService.RegisterCompleted += new EventHandler<RegisterCompletedEventArgs>(OnEndRegister);
         }
-
+        
         private void OnEndLogin(object sender, LoginCompletedEventArgs args)
         {
             Username = args.Result.Value.username;
         }
 
+        private void OnEndRegister(object sender, RegisterCompletedEventArgs args)
+        {
+            Username = "Enregistrement";
+        }
+
         private void LoginBody(string[] param)
         {
-            accountService.LoginAsync("Mediagora", "toto");
+            //accountService.RegisterAsync("test", "test", "test");
+            accountService.LoginAsync("test", "test");
         }
-    }
+	}
 }

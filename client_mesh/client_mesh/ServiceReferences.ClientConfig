@@ -6,19 +6,12 @@
                     <binaryMessageEncoding />
                     <httpTransport maxReceivedMessageSize="2147483647" maxBufferSize="2147483647" />
                 </binding>
-                <binding name="CustomBinding_Account1">
-                    <binaryMessageEncoding />
-                    <httpTransport maxReceivedMessageSize="2147483647" maxBufferSize="2147483647" />
-                </binding>
             </customBinding>
         </bindings>
         <client>
-            <endpoint address="http://localhost:2321/Account.svc" binding="customBinding"
-                bindingConfiguration="CustomBinding_Account" contract="Services.Account"
-                name="CustomBinding_Account" />
             <endpoint address="http://localhost:3500/services/Account.svc"
-                binding="customBinding" bindingConfiguration="CustomBinding_Account1"
-                contract="ServiceReference.Account" name="CustomBinding_Account1" />
+                binding="customBinding" bindingConfiguration="CustomBinding_Account"
+                contract="ServiceReference.Account" name="CustomBinding_Account" />
         </client>
     </system.serviceModel>
 </configuration>

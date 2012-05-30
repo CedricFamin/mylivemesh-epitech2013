@@ -18,7 +18,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "client_meshSite", "client_m
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "1934"
+		VWDPort = "2704"
 		ProjOutputReferences = "{69f6dfe1-2abf-44b7-bd5c-acd9444af799}|ClientBin|false;"
 	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject

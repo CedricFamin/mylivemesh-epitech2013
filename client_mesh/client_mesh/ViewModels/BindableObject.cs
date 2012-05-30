@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace client_mesh.ViewModel
+namespace client_mesh.ViewModels
 {
     /// <summary>
     /// A basic class for bindable object
