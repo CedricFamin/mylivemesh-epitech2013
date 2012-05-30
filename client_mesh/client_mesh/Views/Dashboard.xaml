@@ -3,54 +3,56 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	mc:Ignorable="d"
 	xmlns:local="clr-namespace:client_mesh"
     xmlns:client_mesh_ViewModel="clr-namespace:client_mesh.ViewModels"
+	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:System_Windows_Controls="clr-namespace:System.Windows.Controls"
+	mc:Ignorable="d"
 	x:Class="client_mesh.Dashboard"
 	d:DesignWidth="640" d:DesignHeight="480">
 	<UserControl.Resources>
-        <client_mesh_ViewModel:DashboardModel x:Key="DashboardModelDataSource" />
-        <Style x:Key="ActionButtonIcon" TargetType="Button">
-        	<Setter Property="Background" Value="#FF1F3B53"/>
-        	<Setter Property="Foreground" Value="#FF000000"/>
-        	<Setter Property="Padding" Value="3"/>
-        	<Setter Property="BorderThickness" Value="1"/>
-        	<Setter Property="BorderBrush">
-        		<Setter.Value>
-        			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        				<GradientStop Color="#FFA3AEB9" Offset="0"/>
-        				<GradientStop Color="#FF8399A9" Offset="0.375"/>
-        				<GradientStop Color="#FF718597" Offset="0.375"/>
-        				<GradientStop Color="#FF617584" Offset="1"/>
-        			</LinearGradientBrush>
-        		</Setter.Value>
-        	</Setter>
-        	<Setter Property="Template">
-        		<Setter.Value>
-        			<ControlTemplate TargetType="Button">
-        				<Grid Width="48" Height="48">
-        					<VisualStateManager.VisualStateGroups>
-        						<VisualStateGroup x:Name="CommonStates">
-        							<VisualState x:Name="Normal"/>
-        							<VisualState x:Name="MouseOver"/>
-        							<VisualState x:Name="Pressed"/>
-        							<VisualState x:Name="Disabled"/>
-        						</VisualStateGroup>
-        						<VisualStateGroup x:Name="FocusStates">
-        							<VisualState x:Name="Focused"/>
-        							<VisualState x:Name="Unfocused"/>
-        						</VisualStateGroup>
-        					</VisualStateManager.VisualStateGroups>
-        					<Border x:Name="Background" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3"/>
-        				</Grid>
-        			</ControlTemplate>
-        		</Setter.Value>
-        	</Setter>
-        </Style>
-        <Style x:Key="IconeImageStyle" TargetType="Image">
-        	<Setter Property="Width" Value="32"/>
-        	<Setter Property="Height" Value="32"/>
-        </Style>
+		<client_mesh_ViewModel:DashboardModel x:Key="DashboardModelDataSource" />
+		<Style x:Key="ActionButtonIcon" TargetType="Button">
+			<Setter Property="Background" Value="#FF1F3B53"/>
+			<Setter Property="Foreground" Value="#FF000000"/>
+			<Setter Property="Padding" Value="3"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="BorderBrush">
+				<Setter.Value>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<GradientStop Color="#FFA3AEB9" Offset="0"/>
+						<GradientStop Color="#FF8399A9" Offset="0.375"/>
+						<GradientStop Color="#FF718597" Offset="0.375"/>
+						<GradientStop Color="#FF617584" Offset="1"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Grid Width="48" Height="48">
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal"/>
+									<VisualState x:Name="MouseOver"/>
+									<VisualState x:Name="Pressed"/>
+									<VisualState x:Name="Disabled"/>
+								</VisualStateGroup>
+								<VisualStateGroup x:Name="FocusStates">
+									<VisualState x:Name="Focused"/>
+									<VisualState x:Name="Unfocused"/>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Border x:Name="Background" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3"/>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="IconeImageStyle" TargetType="Image">
+			<Setter Property="Width" Value="32"/>
+			<Setter Property="Height" Value="32"/>
+			<Setter Property="Margin" Value="0,0,15,0"/>
+		</Style>
 	</UserControl.Resources>
 
 	<Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource DashboardModelDataSource}}">
@@ -59,9 +61,18 @@
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 		<StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Top">
-			<Image Source="User Card.png" Style="{StaticResource IconeImageStyle}"/>
+			<Image Source="User Card.png" Style="{StaticResource IconeImageStyle}">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="MouseLeftButtonUp">
+						<i:InvokeCommandAction Command="{Binding OpenProfileWindow, Mode=OneWay}"/>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Image>
 			<Image Source="Folder_01.png" Style="{StaticResource IconeImageStyle}"/>
 			<Image Source="Close.png" Style="{StaticResource IconeImageStyle}"/>
 		</StackPanel>
+		<System_Windows_Controls:FloatableWindow Content="FloatableWindow" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+		<System_Windows_Controls:FloatableWindow Content="FloatableWindow" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+		<System_Windows_Controls:FloatableWindow Content="FloatableWindow" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 	</Grid>
 </UserControl>

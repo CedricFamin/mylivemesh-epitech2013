@@ -4,5 +4,10 @@
 	x:Class="client_mesh.App">
 	<Application.Resources>
 		<!-- Resources scoped at the Application level should be defined here. -->
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="FloatableWindow/theme/generic.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
 	</Application.Resources>
 </Application>
