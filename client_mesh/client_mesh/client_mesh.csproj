@@ -95,6 +95,24 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Liquid, Version=5.3.3.34047, Culture=neutral, PublicKeyToken=7fbdd25c3fcc3919">
+      <HintPath>lib\Liquid.dll</HintPath>
+    </Reference>
+    <Reference Include="Liquid.Components, Version=5.3.3.34048, Culture=neutral, PublicKeyToken=7fbdd25c3fcc3919">
+      <HintPath>lib\Liquid.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Liquid.Menu, Version=5.3.3.34048, Culture=neutral, PublicKeyToken=7fbdd25c3fcc3919">
+      <HintPath>lib\Liquid.Menu.dll</HintPath>
+    </Reference>
+    <Reference Include="Liquid.Popup, Version=5.3.3.34048, Culture=neutral, PublicKeyToken=7fbdd25c3fcc3919">
+      <HintPath>lib\Liquid.Popup.dll</HintPath>
+    </Reference>
+    <Reference Include="Liquid.RichText, Version=5.3.3.34048, Culture=neutral, PublicKeyToken=7fbdd25c3fcc3919">
+      <HintPath>lib\Liquid.RichText.dll</HintPath>
+    </Reference>
+    <Reference Include="Liquid.TreeView, Version=5.3.3.34047, Culture=neutral, PublicKeyToken=7fbdd25c3fcc3919">
+      <HintPath>lib\Liquid.TreeView.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="mscorlib" />
     <Reference Include="System.Runtime.Serialization" />

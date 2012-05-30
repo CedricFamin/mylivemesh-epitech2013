@@ -6,6 +6,7 @@
 	xmlns:local="clr-namespace:client_mesh"
     xmlns:client_mesh_ViewModel="clr-namespace:client_mesh.ViewModels"
 	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:System_Windows_Controls="clr-namespace:System.Windows.Controls"
+	xmlns:Liquid="clr-namespace:Liquid;assembly=Liquid.Popup"
 	mc:Ignorable="d"
 	x:Class="client_mesh.Dashboard"
 	d:DesignWidth="640" d:DesignHeight="480">
@@ -55,12 +56,8 @@
 		</Style>
 	</UserControl.Resources>
 
-	<Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource DashboardModelDataSource}}">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition/>
-		</Grid.RowDefinitions>
-		<StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Top">
+	<Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource DashboardModelDataSource}}" UseLayoutRounding="False">
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
 			<Image Source="User Card.png" Style="{StaticResource IconeImageStyle}">
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="MouseLeftButtonUp">
@@ -71,8 +68,8 @@
 			<Image Source="Folder_01.png" Style="{StaticResource IconeImageStyle}"/>
 			<Image Source="Close.png" Style="{StaticResource IconeImageStyle}"/>
 		</StackPanel>
-		<System_Windows_Controls:FloatableWindow Content="FloatableWindow" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-		<System_Windows_Controls:FloatableWindow Content="FloatableWindow" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-		<System_Windows_Controls:FloatableWindow Content="FloatableWindow" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+		<Liquid:Dialog x:Name="areYouSure" Width="200" Height="180" Title="Are you sure?" IsOpen="True" IsResizable="True">
+			<TextBlock x:Name="messageText" TextWrapping="Wrap" Text="Your form will now be submitted, due to the high levels of interest in this position please allow Two weeks to process." />
+		</Liquid:Dialog>
 	</Grid>
 </UserControl>
