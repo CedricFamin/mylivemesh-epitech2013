@@ -4,8 +4,16 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 	xmlns:client_mesh_ViewModel="clr-namespace:client_mesh.ViewModels" 
 	xmlns:local="clr-namespace:client_mesh" 
-	x:Class="client_mesh.MainPage"
-	Width="1024" Height="768">
+	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+	x:Class="client_mesh.MainPage">
+	<UserControl.Resources>
+		<Storyboard x:Name="SwtichLoginDashBoard">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="userControl">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+	</UserControl.Resources>
 
 
 	<UserControl.DataContext>
@@ -13,7 +21,22 @@
 	</UserControl.DataContext>
 
 
-	<UserControl Margin="0,0,344,296">
-		<local:LoginPage/>
-	</UserControl>
+	<Canvas Height="207" Width="250">
+
+
+		<UserControl x:Name="userControl" Opacity="0">
+			<local:Dashboard/>
+		</UserControl>
+
+
+		<UserControl Margin="0">
+			<local:LoginPage x:Name="loginPage" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<i:Interaction.Triggers>
+					<ei:DataTrigger Binding="{Binding Opacity, ElementName=loginPage}" Value="0">
+						<ei:ControlStoryboardAction Storyboard="{StaticResource SwtichLoginDashBoard}"/>
+					</ei:DataTrigger>
+				</i:Interaction.Triggers>
+			</local:LoginPage>
+		</UserControl>
+	</Canvas>
 </UserControl>

@@ -3,28 +3,92 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:client_mesh_ViewModel="clr-namespace:client_mesh.ViewModels" 
-	mc:Ignorable="d"
+    xmlns:client_mesh_ViewModel="clr-namespace:client_mesh.ViewModels"
 	xmlns:local="clr-namespace:client_mesh"
+	xmlns:client_mesh_ServiceReference="clr-namespace:client_mesh.ServiceReference" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Name="userControl" 
+	mc:Ignorable="d"
 	x:Class="client_mesh.LoginPage"
 	d:DesignWidth="640" d:DesignHeight="480">
-	<UserControl.Resources>
 
+	<UserControl.Resources>
+		<client_mesh_ServiceReference:WebResult x:Key="WebResultDataSource" d:IsDataSource="True"/>
+		<Storyboard x:Name="DisplayErrorCode">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="stackPanel">
+				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:2" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="stackPanel">
+				<DiscreteObjectKeyFrame KeyTime="0">
+					<DiscreteObjectKeyFrame.Value>
+						<Visibility>Visible</Visibility>
+					</DiscreteObjectKeyFrame.Value>
+				</DiscreteObjectKeyFrame>
+				<DiscreteObjectKeyFrame KeyTime="0:0:1">
+					<DiscreteObjectKeyFrame.Value>
+						<Visibility>Visible</Visibility>
+					</DiscreteObjectKeyFrame.Value>
+				</DiscreteObjectKeyFrame>
+				<DiscreteObjectKeyFrame KeyTime="0:0:2">
+					<DiscreteObjectKeyFrame.Value>
+						<Visibility>Visible</Visibility>
+					</DiscreteObjectKeyFrame.Value>
+				</DiscreteObjectKeyFrame>
+			</ObjectAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Name="HideLoginScreen">
+			<DoubleAnimation Duration="0:0:2" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="userControl" d:IsOptimized="True">
+				<DoubleAnimation.EasingFunction>
+					<CircleEase EasingMode="EaseIn"/>
+				</DoubleAnimation.EasingFunction>
+			</DoubleAnimation>
+			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="userControl">
+				<DiscreteObjectKeyFrame KeyTime="0:0:2">
+					<DiscreteObjectKeyFrame.Value>
+						<Visibility>Collapsed</Visibility>
+					</DiscreteObjectKeyFrame.Value>
+				</DiscreteObjectKeyFrame>
+			</ObjectAnimationUsingKeyFrames>
+		</Storyboard>
 	</UserControl.Resources>
 
-	<Grid x:Name="LayoutRoot_Copy" Background="#cccccc" Margin="0,0,-384,-288">
-		<Grid.DataContext>
+	<StackPanel x:Name="LayoutRoot_Copy" Background="#cccccc" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+		<i:Interaction.Triggers>
+			<ei:DataTrigger Binding="{Binding Logued}" Value="true">
+				<ei:ControlStoryboardAction Storyboard="{StaticResource HideLoginScreen}"/>
+			</ei:DataTrigger>
+		</i:Interaction.Triggers>
+		<StackPanel.DataContext>
 			<client_mesh_ViewModel:LoginPageViewModel/>
-		</Grid.DataContext>
-		<PasswordBox Margin="388,359,443,0" ToolTipService.ToolTip="enter password" Height="25" VerticalAlignment="Top"/>
-		<TextBox x:Name="username" Height="25" Margin="388,310,443,0" TextWrapping="Wrap" VerticalAlignment="Top" ToolTipService.ToolTip="enter username" Text="{Binding Username, Mode=TwoWay}" />
-		<TextBlock Height="14" Margin="435,292,476,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
-		<TextBlock Height="16" Margin="435,339,476,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top"/>
-		<CheckBox Content="Remember me" Height="18" Margin="388,0,443,362" VerticalAlignment="Bottom"/>
-		<Button Content="Signin" Margin="388,0,0,337" Height="21" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="113" Command="{Binding Login, Mode=OneWay}"/>
-		<TextBlock Margin="281,202,321,0" TextWrapping="Wrap" FontSize="29.333" Height="86" VerticalAlignment="Top" TextAlignment="Center"><Run Text="My_LiveMesh"/><LineBreak/><Run Text="Authentication"/></TextBlock>
-		<TextBlock HorizontalAlignment="Right" Height="25" Margin="0,310,428,0" TextWrapping="Wrap" Text="*" VerticalAlignment="Top" Width="11" FontSize="16"/>
-		<TextBlock Height="16" Margin="388,0,0,317" TextWrapping="Wrap" Text="* required fields." VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="113"/>
-		<TextBlock HorizontalAlignment="Right" Height="25" Margin="0,359,428,0" TextWrapping="Wrap" Text="*" VerticalAlignment="Top" Width="11" FontSize="16"/>
-	</Grid>
+		</StackPanel.DataContext>
+		<TextBlock Margin="0" TextWrapping="Wrap" FontSize="29.333" Height="86" TextAlignment="Center"><Run Text="My_LiveMesh"/><LineBreak/><Run Text="Authentication"/></TextBlock>
+		<StackPanel x:Name="stackPanel" Orientation="Horizontal" Opacity="0">
+			<StackPanel.Background>
+				<SolidColorBrush Color="Red" Opacity="0.35"/>
+			</StackPanel.Background>
+			<TextBlock TextWrapping="Wrap" Text="Reponse from server :" HorizontalAlignment="Left" Margin="0,0,2,0"/>
+			<TextBlock TextWrapping="Wrap" Text="{Binding ErrorCode}">
+				<i:Interaction.Triggers>
+					<ei:DataTrigger Binding="{Binding ErrorCode}" Comparison="NotEqual" Value="0">
+						<ei:ControlStoryboardAction Storyboard="{StaticResource DisplayErrorCode}"/>
+					</ei:DataTrigger>
+				</i:Interaction.Triggers>
+			</TextBlock>
+		</StackPanel>
+		<Grid Height="50" Margin="0" HorizontalAlignment="Center" Width="250">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="60"/>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock TextWrapping="Wrap" Text="Password" Margin="0,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+			<PasswordBox x:Name="Password" ToolTipService.ToolTip="enter password" Margin="0" Grid.Column="1" VerticalAlignment="Top" Password="{Binding Password, Mode=TwoWay}"/>
+			<TextBlock x:Name="star1" Height="25" TextWrapping="Wrap" Text="*" Width="11" FontSize="16" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Top" Grid.Column="2"/>
+			<TextBlock x:Name="nameText" Height="14" Margin="0,0,0,5" TextWrapping="Wrap" Text="Username" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+			<TextBox x:Name="username" Height="25" TextWrapping="Wrap" ToolTipService.ToolTip="enter username" Text="{Binding Username, Mode=TwoWay}" Margin="0" VerticalAlignment="Bottom" Grid.Column="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+			<TextBlock x:Name="star2" Height="25" TextWrapping="Wrap" Text="*" Width="11" FontSize="16" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Bottom" Grid.Column="2"/>
+		</Grid>
+		<CheckBox Content="Remember me" Height="18" Margin="0" HorizontalAlignment="Center"/>
+		<Button Content="Signin" Margin="0" Height="21" HorizontalAlignment="Center" Width="113" Command="{Binding Login, Mode=OneWay}"/>
+		<TextBlock Height="16" Margin="0" TextWrapping="Wrap" Text="* required fields." HorizontalAlignment="Center" Width="113"/>
+	</StackPanel>
 </UserControl>

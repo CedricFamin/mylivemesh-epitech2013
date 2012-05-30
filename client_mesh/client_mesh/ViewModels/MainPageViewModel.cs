@@ -15,9 +15,16 @@ namespace client_mesh.ViewModels
 {
     public class MainPageViewModel : BindableObject
     {
+        private bool _logued;
+        public bool Logued
+        {
+            get { return _logued; }
+            set { _logued = value; }
+        }
+        
         public MainPageViewModel()
         {
-            
+            _logued = false;
         }
     }
 }
