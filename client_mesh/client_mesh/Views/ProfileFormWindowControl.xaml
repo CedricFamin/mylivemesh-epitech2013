@@ -3,57 +3,12 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:local="clr-namespace:client_mesh"
-    xmlns:client_mesh_ViewModel="clr-namespace:client_mesh.ViewModels"
-	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-	xmlns:Liquid="clr-namespace:Liquid;assembly=Liquid.Popup"
-	xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Name="userControl"
+	xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Liquid="clr-namespace:Liquid;assembly=Liquid.Popup"
 	mc:Ignorable="d"
-	x:Class="client_mesh.Dashboard"
-	d:DesignWidth="640" d:DesignHeight="480">
+	x:Class="client_mesh.ProfileFormWindowControl"
+	d:DesignWidth="200" d:DesignHeight="200" UseLayoutRounding="False">
+
 	<UserControl.Resources>
-		<Style x:Key="ActionButtonIcon" TargetType="Button">
-			<Setter Property="Background" Value="#FF1F3B53"/>
-			<Setter Property="Foreground" Value="#FF000000"/>
-			<Setter Property="Padding" Value="3"/>
-			<Setter Property="BorderThickness" Value="1"/>
-			<Setter Property="BorderBrush">
-				<Setter.Value>
-					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-						<GradientStop Color="#FFA3AEB9" Offset="0"/>
-						<GradientStop Color="#FF8399A9" Offset="0.375"/>
-						<GradientStop Color="#FF718597" Offset="0.375"/>
-						<GradientStop Color="#FF617584" Offset="1"/>
-					</LinearGradientBrush>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="Button">
-						<Grid Width="48" Height="48">
-							<VisualStateManager.VisualStateGroups>
-								<VisualStateGroup x:Name="CommonStates">
-									<VisualState x:Name="Normal"/>
-									<VisualState x:Name="MouseOver"/>
-									<VisualState x:Name="Pressed"/>
-									<VisualState x:Name="Disabled"/>
-								</VisualStateGroup>
-								<VisualStateGroup x:Name="FocusStates">
-									<VisualState x:Name="Focused"/>
-									<VisualState x:Name="Unfocused"/>
-								</VisualStateGroup>
-							</VisualStateManager.VisualStateGroups>
-							<Border x:Name="Background" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3"/>
-						</Grid>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<Style x:Key="IconeImageStyle" TargetType="Image">
-			<Setter Property="Width" Value="32"/>
-			<Setter Property="Height" Value="32"/>
-			<Setter Property="Margin" Value="10,5,5,5"/>
-		</Style>
 		<ControlTemplate x:Key="ValidationToolTipTemplate">
 			<Grid x:Name="Root" Margin="5,0" Opacity="0" RenderTransformOrigin="0,0">
 				<Grid.RenderTransform>
@@ -221,52 +176,24 @@
 			</Setter>
 		</Style>
 		<Storyboard x:Name="showProfileForm">
-			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="profileFormWindowControl">
-				<DiscreteObjectKeyFrame KeyTime="0:0:1">
-					<DiscreteObjectKeyFrame.Value>
-						<Visibility>Visible</Visibility>
-					</DiscreteObjectKeyFrame.Value>
-				</DiscreteObjectKeyFrame>
-			</ObjectAnimationUsingKeyFrames>
-			<DoubleAnimation Duration="0:0:1" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="profileFormWindowControl" d:IsOptimized="True"/>
-		</Storyboard>
-		<Storyboard x:Name="HideProfileForm">
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="profileFormWindowControl">
-				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="profileFormWindowControl">
-				<DiscreteObjectKeyFrame KeyTime="0">
-					<DiscreteObjectKeyFrame.Value>
-						<Visibility>Visible</Visibility>
-					</DiscreteObjectKeyFrame.Value>
-				</DiscreteObjectKeyFrame>
-				<DiscreteObjectKeyFrame KeyTime="0:0:1">
-					<DiscreteObjectKeyFrame.Value>
-						<Visibility>Collapsed</Visibility>
-					</DiscreteObjectKeyFrame.Value>
-				</DiscreteObjectKeyFrame>
-			</ObjectAnimationUsingKeyFrames>
-		</Storyboard>
-		<Storyboard x:Name="FolderWindowShow">
-			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="folderWindowControl">
+			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ProfileFormWindow">
 				<DiscreteObjectKeyFrame KeyTime="0">
 					<DiscreteObjectKeyFrame.Value>
 						<Visibility>Visible</Visibility>
 					</DiscreteObjectKeyFrame.Value>
 				</DiscreteObjectKeyFrame>
 			</ObjectAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="folderWindowControl">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ProfileFormWindow">
 				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
 				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
 			</DoubleAnimationUsingKeyFrames>
 		</Storyboard>
-		<Storyboard x:Name="FolderWindowHide">
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="folderWindowControl">
+		<Storyboard x:Name="HideProfileForm">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ProfileFormWindow">
 				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
 				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
 			</DoubleAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="folderWindowControl">
+			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ProfileFormWindow">
 				<DiscreteObjectKeyFrame KeyTime="0">
 					<DiscreteObjectKeyFrame.Value>
 						<Visibility>Visible</Visibility>
@@ -281,78 +208,36 @@
 		</Storyboard>
 	</UserControl.Resources>
 
-    <Grid x:Name="LayoutRoot" DataContext="{Binding DashboardModel, Source={StaticResource ViewModelLocator}}" UseLayoutRounding="False" Margin="0">
-		<Grid.RowDefinitions>
-			<RowDefinition/>
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
-		<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="1" Margin="0">
-			<StackPanel.Background>
-				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-					<GradientStop Color="#FF5A5B66"/>
-					<GradientStop Color="#FF414141" Offset="1"/>
-				</LinearGradientBrush>
-			</StackPanel.Background>
-			<Image x:Name="User" Source="User Card.png" Style="{StaticResource IconeImageStyle}">
-				<i:Interaction.Triggers>
-					<i:EventTrigger EventName="MouseLeftButtonUp" SourceObject="{Binding ElementName=User}">
-						<i:Interaction.Behaviors>
-							<ei:ConditionBehavior>
-								<ei:ConditionalExpression>
-									<ei:ComparisonCondition LeftOperand="{Binding Opacity, ElementName=profileFormWindowControl}" RightOperand="0"/>
-								</ei:ConditionalExpression>
-							</ei:ConditionBehavior>
-						</i:Interaction.Behaviors>
-						<ei:ControlStoryboardAction Storyboard="{StaticResource showProfileForm}"/>
-					</i:EventTrigger>
-					<i:EventTrigger EventName="MouseLeftButtonUp" SourceObject="{Binding ElementName=User}">
-						<i:Interaction.Behaviors>
-							<ei:ConditionBehavior>
-								<ei:ConditionalExpression>
-									<ei:ComparisonCondition LeftOperand="{Binding Opacity, ElementName=profileFormWindowControl}" RightOperand="0" Operator="NotEqual"/>
-								</ei:ConditionalExpression>
-							</ei:ConditionBehavior>
-						</i:Interaction.Behaviors>
-						<ei:ControlStoryboardAction Storyboard="{StaticResource HideProfileForm}"/>
-					</i:EventTrigger>
-				</i:Interaction.Triggers>
-			</Image>
-			<Image x:Name="image" Source="Folder_01.png" Style="{StaticResource IconeImageStyle}">
-				<i:Interaction.Triggers>
-					<i:EventTrigger EventName="MouseLeftButtonUp" SourceObject="{Binding ElementName=image}">
-						<i:Interaction.Behaviors>
-							<ei:ConditionBehavior>
-								<ei:ConditionalExpression>
-									<ei:ComparisonCondition LeftOperand="{Binding Opacity, ElementName=folderWindowControl}" RightOperand="0"/>
-								</ei:ConditionalExpression>
-							</ei:ConditionBehavior>
-						</i:Interaction.Behaviors>
-						<ei:ControlStoryboardAction Storyboard="{StaticResource FolderWindowShow}"/>
-					</i:EventTrigger>
-					<i:EventTrigger EventName="MouseLeftButtonUp" SourceObject="{Binding ElementName=image}">
-						<i:Interaction.Behaviors>
-							<ei:ConditionBehavior>
-								<ei:ConditionalExpression>
-									<ei:ComparisonCondition LeftOperand="{Binding Opacity, ElementName=folderWindowControl}" RightOperand="0" Operator="NotEqual"/>
-								</ei:ConditionalExpression>
-							</ei:ConditionBehavior>
-						</i:Interaction.Behaviors>
-						<ei:ControlStoryboardAction Storyboard="{StaticResource FolderWindowHide}"/>
-					</i:EventTrigger>
-				</i:Interaction.Triggers>
-			</Image>
-			<Image Source="Close.png" Style="{StaticResource IconeImageStyle}"/>
-		</StackPanel>
-		<local:ProfileFormWindowControl x:Name="profileFormWindowControl" Opacity="0" Visibility="Collapsed">
-			<i:Interaction.Triggers>
-				<i:EventTrigger EventName="MouseLeftButtonDown">
-					<ei:ChangePropertyAction/>
-				</i:EventTrigger>
-			</i:Interaction.Triggers>
-		</local:ProfileFormWindowControl>
-		<local:FolderWindowControl x:Name="folderWindowControl" Visibility="Collapsed" Opacity="0"/>
-		
-		
-		
+	<Grid x:Name="LayoutRoot">
+		<Liquid:Dialog x:Name="ProfileFormWindow" Height="200" Width="200" Title="Edit profile" IsResizable="True" Buttons="None" ButtonsVisibility="Collapsed" IsCloseEnabled="False" IsDraggable="True" CornerRadius="2" IsOpen="True" Visibility="Visible" GripSize="4">
+			<Grid >
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<TextBlock x:Name="UsernameTxt" Text="Username:" TextWrapping="Wrap" Style="{StaticResource FormTextBlock}"/>
+				<TextBlock Text="Password:" d:LayoutOverrides="Width" Grid.Row="1" Style="{StaticResource FormTextBlock}"/>
+				<TextBlock Text="Email:" d:LayoutOverrides="Width" Grid.Row="2" Style="{StaticResource FormTextBlock}"/>
+				<TextBlock Text="Nb folder max:" d:LayoutOverrides="Width" Grid.Row="3" Style="{StaticResource FormTextBlock}"/>
+				<TextBlock Text="Capacity:" d:LayoutOverrides="Width" Grid.Row="4" Style="{StaticResource FormTextBlock}"/>
+				<TextBlock Text="Nb file by forlder" d:LayoutOverrides="Width" Grid.Row="5" Style="{StaticResource FormTextBlock}"/>
+				<TextBox TextWrapping="Wrap" Text="TextBox" d:LayoutOverrides="Width, Height" Grid.Column="1" Style="{StaticResource FormTextBox}"/>
+				<TextBox TextWrapping="Wrap" Text="TextBox" d:LayoutOverrides="Width, Height" Grid.Row="1" Grid.Column="1" Style="{StaticResource FormTextBox}"/>
+				<TextBox TextWrapping="Wrap" Text="TextBox" d:LayoutOverrides="Width, Height" Grid.Column="1" Grid.Row="2" Style="{StaticResource FormTextBox}"/>
+				<TextBox TextWrapping="Wrap" Text="TextBox" d:LayoutOverrides="Width, Height" Grid.Column="1" Grid.Row="3" Style="{StaticResource FormTextBox}"/>
+				<TextBox TextWrapping="Wrap" Text="TextBox" d:LayoutOverrides="Width, Height" Grid.Column="1" Grid.Row="4" Style="{StaticResource FormTextBox}"/>
+				<TextBox TextWrapping="Wrap" Text="TextBox" d:LayoutOverrides="Width, Height" Grid.Row="1" Grid.Column="5" Style="{StaticResource FormTextBox}"/>
+				<TextBox Margin="0" TextWrapping="Wrap" Text="TextBox" d:LayoutOverrides="Width, Height" Grid.Column="1" Grid.Row="5" Style="{StaticResource FormTextBox}"/>
+				
+			</Grid>
+		</Liquid:Dialog>
 	</Grid>
 </UserControl>

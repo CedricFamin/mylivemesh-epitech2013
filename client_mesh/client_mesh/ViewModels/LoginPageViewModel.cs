@@ -10,7 +10,8 @@ namespace client_mesh.ViewModels
 
         static User g_User = null;
 
-		public ICommand Login { get; private set; }
+        #region properties
+        public ICommand Login { get; private set; }
         private AccountClient accountService { get; set; }
         
         private string _username;
@@ -42,8 +43,6 @@ namespace client_mesh.ViewModels
                 RaisePropertyChange("Logued");
             }
         }
-        
-        
 
         private WebResult.ErrorCodeList _error;
         public WebResult.ErrorCodeList ErrorCode
@@ -54,7 +53,9 @@ namespace client_mesh.ViewModels
                 RaisePropertyChange("ErrorCode");
             }
         }
-        
+        #endregion
+
+        #region CTor
         public LoginPageViewModel()
         {
             Login = new RelayCommand((param) => LoginBody(param as string[]));
@@ -64,7 +65,9 @@ namespace client_mesh.ViewModels
             _error = 0;
             _logued = false;
         }
-        
+        #endregion
+
+        #region ResultAsync
         private void OnEndLogin(object sender, LoginCompletedEventArgs args)
         {
             if (args.Error == null)
@@ -83,11 +86,14 @@ namespace client_mesh.ViewModels
         {
             Username = "Enregistrement";
         }
+        #endregion
 
+        #region BodyCommand
         private void LoginBody(string[] param)
         {
             //accountService.RegisterAsync("test", "test", "test");
             accountService.LoginAsync(Username, Password);
         }
-	}
+        #endregion
+    }
 }

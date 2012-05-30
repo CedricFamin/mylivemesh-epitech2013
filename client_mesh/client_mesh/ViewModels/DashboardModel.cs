@@ -12,13 +12,25 @@ namespace client_mesh.ViewModels
 	public class DashboardModel : BindableObject
 	{
         public ICommand OpenProfileWindow { get; private set; }
+        private bool _profileFormOpen;
+
+        public bool ProfileFormOpen
+        {
+            get { return _profileFormOpen; }
+            set { 
+                _profileFormOpen = value;
+                RaisePropertyChange("ProfileFormOpen");
+            }
+        }
+        
 		public DashboardModel()
 		{
 			OpenProfileWindow = new RelayCommand((param) => this.OpenProfileWindowBody());
 		}
 
         private void OpenProfileWindowBody()
-        {  
+        {
+            ProfileFormOpen = !ProfileFormOpen;
         }
 
 	}

@@ -4,6 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:client_mesh_ViewModel="clr-namespace:client_mesh.ViewModels"
+	xmlns:System="clr-namespace:System;assembly=mscorlib"
 	xmlns:local="clr-namespace:client_mesh"
 	xmlns:client_mesh_ServiceReference="clr-namespace:client_mesh.ServiceReference" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Name="userControl" 
 	mc:Ignorable="d"
@@ -11,7 +12,6 @@
 	d:DesignWidth="640" d:DesignHeight="480">
 
 	<UserControl.Resources>
-		<client_mesh_ServiceReference:WebResult x:Key="WebResultDataSource" d:IsDataSource="True"/>
 		<Storyboard x:Name="DisplayErrorCode">
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="stackPanel">
 				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
@@ -51,15 +51,12 @@
 		</Storyboard>
 	</UserControl.Resources>
 
-	<StackPanel x:Name="LayoutRoot_Copy" Background="#cccccc" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+    <StackPanel x:Name="LayoutRoot_Copy" Background="#cccccc" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" DataContext="{Binding LoginPageViewModel, Source={StaticResource ViewModelLocator}}">
 		<i:Interaction.Triggers>
 			<ei:DataTrigger Binding="{Binding Logued}" Value="true">
 				<ei:ControlStoryboardAction Storyboard="{StaticResource HideLoginScreen}"/>
 			</ei:DataTrigger>
 		</i:Interaction.Triggers>
-		<StackPanel.DataContext>
-			<client_mesh_ViewModel:LoginPageViewModel/>
-		</StackPanel.DataContext>
 		<TextBlock Margin="0" TextWrapping="Wrap" FontSize="29.333" Height="86" TextAlignment="Center"><Run Text="My_LiveMesh"/><LineBreak/><Run Text="Authentication"/></TextBlock>
 		<StackPanel x:Name="stackPanel" Orientation="Horizontal" Opacity="0">
 			<StackPanel.Background>
