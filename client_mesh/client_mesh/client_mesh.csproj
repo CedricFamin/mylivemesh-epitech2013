@@ -189,6 +189,11 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceReference\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Close.png" />
+    <Resource Include="Views\Folder_01.png" />
+    <Resource Include="Views\User Card.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

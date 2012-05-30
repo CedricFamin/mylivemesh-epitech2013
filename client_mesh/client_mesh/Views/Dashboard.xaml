@@ -10,9 +10,58 @@
 	d:DesignWidth="640" d:DesignHeight="480">
 	<UserControl.Resources>
         <client_mesh_ViewModel:DashboardModel x:Key="DashboardModelDataSource" />
+        <Style x:Key="ActionButtonIcon" TargetType="Button">
+        	<Setter Property="Background" Value="#FF1F3B53"/>
+        	<Setter Property="Foreground" Value="#FF000000"/>
+        	<Setter Property="Padding" Value="3"/>
+        	<Setter Property="BorderThickness" Value="1"/>
+        	<Setter Property="BorderBrush">
+        		<Setter.Value>
+        			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        				<GradientStop Color="#FFA3AEB9" Offset="0"/>
+        				<GradientStop Color="#FF8399A9" Offset="0.375"/>
+        				<GradientStop Color="#FF718597" Offset="0.375"/>
+        				<GradientStop Color="#FF617584" Offset="1"/>
+        			</LinearGradientBrush>
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="Button">
+        				<Grid Width="48" Height="48">
+        					<VisualStateManager.VisualStateGroups>
+        						<VisualStateGroup x:Name="CommonStates">
+        							<VisualState x:Name="Normal"/>
+        							<VisualState x:Name="MouseOver"/>
+        							<VisualState x:Name="Pressed"/>
+        							<VisualState x:Name="Disabled"/>
+        						</VisualStateGroup>
+        						<VisualStateGroup x:Name="FocusStates">
+        							<VisualState x:Name="Focused"/>
+        							<VisualState x:Name="Unfocused"/>
+        						</VisualStateGroup>
+        					</VisualStateManager.VisualStateGroups>
+        					<Border x:Name="Background" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3"/>
+        				</Grid>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
+        <Style x:Key="IconeImageStyle" TargetType="Image">
+        	<Setter Property="Width" Value="32"/>
+        	<Setter Property="Height" Value="32"/>
+        </Style>
 	</UserControl.Resources>
 
 	<Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource DashboardModelDataSource}}">
-		<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" FontSize="96"/>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Top">
+			<Image Source="User Card.png" Style="{StaticResource IconeImageStyle}"/>
+			<Image Source="Folder_01.png" Style="{StaticResource IconeImageStyle}"/>
+			<Image Source="Close.png" Style="{StaticResource IconeImageStyle}"/>
+		</StackPanel>
 	</Grid>
 </UserControl>
