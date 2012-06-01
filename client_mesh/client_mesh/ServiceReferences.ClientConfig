@@ -1,6 +1,12 @@
 ﻿<configuration>
     <system.serviceModel>
         <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_FolderManager" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
             <customBinding>
                 <binding name="CustomBinding_Account">
                     <binaryMessageEncoding />
@@ -9,9 +15,12 @@
             </customBinding>
         </bindings>
         <client>
-            <endpoint address="http://localhost:3500/services/Account.svc"
+            <endpoint address="http://localhost:1991/services/Account.svc"
                 binding="customBinding" bindingConfiguration="CustomBinding_Account"
                 contract="ServiceReference.Account" name="CustomBinding_Account" />
+            <endpoint address="http://localhost:1991/services/FolderManager.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_FolderManager"
+                contract="ServiceReference1.FolderManager" name="BasicHttpBinding_FolderManager" />
         </client>
     </system.serviceModel>
 </configuration>

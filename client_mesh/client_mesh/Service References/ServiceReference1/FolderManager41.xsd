@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:1991/services/FolderManager.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="WebResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" type="tns:WebResult.ErrorCodeList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WebResult" nillable="true" type="tns:WebResult" />
+  <xs:simpleType name="WebResult.ErrorCodeList">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SUCCESS" />
+      <xs:enumeration value="USER_NOT_FOUND" />
+      <xs:enumeration value="INFORMATION_REQUIRED" />
+      <xs:enumeration value="USER_ALREADY_EXIST" />
+      <xs:enumeration value="CANNOT_CREATE_DIRECTORY" />
+      <xs:enumeration value="DIRECTORY_NOT_FOUND" />
+      <xs:enumeration value="CANNOT_DELETE_DIRECTORY" />
+      <xs:enumeration value="CANNOT_RENAME_DIRECTORY" />
+      <xs:enumeration value="FILE_NOT_FOUND" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WebResult.ErrorCodeList" nillable="true" type="tns:WebResult.ErrorCodeList" />
+  <xs:complexType name="WebResultOfArrayOfstringuHEDJ7Dj">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="WebResultOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfstring" Namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WebResult">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Value" nillable="true" type="q1:ArrayOfstring" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WebResultOfArrayOfstringuHEDJ7Dj" nillable="true" type="tns:WebResultOfArrayOfstringuHEDJ7Dj" />
+  <xs:complexType name="WebResultOfArrayOfFileDefinitiony8fP_SiTt">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="WebResultOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfFileDefinition" Namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WebResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="tns:ArrayOfFileDefinition" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WebResultOfArrayOfFileDefinitiony8fP_SiTt" nillable="true" type="tns:WebResultOfArrayOfFileDefinitiony8fP_SiTt" />
+  <xs:complexType name="ArrayOfFileDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FileDefinition" nillable="true" type="tns:FileDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFileDefinition" nillable="true" type="tns:ArrayOfFileDefinition" />
+  <xs:complexType name="FileDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FileUri" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Filename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RawData" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FileDefinition" nillable="true" type="tns:FileDefinition" />
+  <xs:complexType name="WebResultOfFileDefinitiony8fP_SiTt">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="WebResultOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="FileDefinition" Namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WebResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="tns:FileDefinition" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WebResultOfFileDefinitiony8fP_SiTt" nillable="true" type="tns:WebResultOfFileDefinitiony8fP_SiTt" />
+</xs:schema>

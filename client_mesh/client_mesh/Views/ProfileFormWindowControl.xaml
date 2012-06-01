@@ -70,7 +70,7 @@
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="TextBox">
-						<Grid x:Name="RootElement" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,10,0">
+						<Grid x:Name="RootElement" VerticalAlignment="Center" Margin="5,0,10,0" ScrollViewer.HorizontalScrollBarVisibility="Auto">
 							<VisualStateManager.VisualStateGroups>
 								<VisualStateGroup x:Name="CommonStates">
 									<VisualState x:Name="Normal"/>
@@ -135,11 +135,11 @@
 									</VisualState>
 								</VisualStateGroup>
 							</VisualStateManager.VisualStateGroups>
-							<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="1" Opacity="1">
+							<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="1" Opacity="1" ScrollViewer.HorizontalScrollBarVisibility="Auto">
 								<Grid>
 									<Border x:Name="ReadOnlyVisualElement" Background="#5EC9C9C9" Opacity="0"/>
 									<Border x:Name="MouseOverBorder" BorderBrush="Transparent" BorderThickness="1">
-										<ScrollViewer x:Name="ContentElement" BorderThickness="0" IsTabStop="False" Padding="{TemplateBinding Padding}"/>
+										<ScrollViewer x:Name="ContentElement" BorderThickness="0" IsTabStop="False" Padding="{TemplateBinding Padding}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Disabled" UseLayoutRounding="False"/>
 									</Border>
 								</Grid>
 							</Border>
@@ -208,16 +208,17 @@
 		</Storyboard>
 	</UserControl.Resources>
 
-	<Grid x:Name="LayoutRoot">
-		<Liquid:Dialog x:Name="ProfileFormWindow" Height="200" Width="200" Title="Edit profile" IsResizable="True" Buttons="None" ButtonsVisibility="Collapsed" IsCloseEnabled="False" IsDraggable="True" CornerRadius="2" IsOpen="True" Visibility="Visible" GripSize="4">
-			<Grid >
+    <Grid x:Name="LayoutRoot" DataContext="{Binding EditProfileViewModel, Source={StaticResource ViewModelLocator}}">
+		<Liquid:Dialog x:Name="FolderWindow" Height="200" Width="200" Title="File system" IsResizable="True" Buttons="None" ButtonsVisibility="Collapsed" IsCloseEnabled="False" IsDraggable="True" CornerRadius="2" IsOpen="True" Visibility="Visible" GripSize="4">
+			<Grid Width="200" Height="175" >
 				<Grid.RowDefinitions>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>
+					<RowDefinition Height="0.133*"/>
+					<RowDefinition Height="0.133*"/>
+					<RowDefinition Height="0.133*"/>
+					<RowDefinition Height="0.133*"/>
+					<RowDefinition Height="0.133*"/>
+					<RowDefinition Height="0.133*"/>
+					<RowDefinition Height="0.204*"/>
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
@@ -229,14 +230,13 @@
 				<TextBlock Text="Nb folder max:" d:LayoutOverrides="Width" Grid.Row="3" Style="{StaticResource FormTextBlock}"/>
 				<TextBlock Text="Capacity:" d:LayoutOverrides="Width" Grid.Row="4" Style="{StaticResource FormTextBlock}"/>
 				<TextBlock Text="Nb file by forlder" d:LayoutOverrides="Width" Grid.Row="5" Style="{StaticResource FormTextBlock}"/>
-				<TextBox TextWrapping="Wrap" Text="TextBox" d:LayoutOverrides="Width, Height" Grid.Column="1" Style="{StaticResource FormTextBox}"/>
-				<TextBox TextWrapping="Wrap" Text="TextBox" d:LayoutOverrides="Width, Height" Grid.Row="1" Grid.Column="1" Style="{StaticResource FormTextBox}"/>
-				<TextBox TextWrapping="Wrap" Text="TextBox" d:LayoutOverrides="Width, Height" Grid.Column="1" Grid.Row="2" Style="{StaticResource FormTextBox}"/>
-				<TextBox TextWrapping="Wrap" Text="TextBox" d:LayoutOverrides="Width, Height" Grid.Column="1" Grid.Row="3" Style="{StaticResource FormTextBox}"/>
-				<TextBox TextWrapping="Wrap" Text="TextBox" d:LayoutOverrides="Width, Height" Grid.Column="1" Grid.Row="4" Style="{StaticResource FormTextBox}"/>
-				<TextBox TextWrapping="Wrap" Text="TextBox" d:LayoutOverrides="Width, Height" Grid.Row="1" Grid.Column="5" Style="{StaticResource FormTextBox}"/>
-				<TextBox Margin="0" TextWrapping="Wrap" Text="TextBox" d:LayoutOverrides="Width, Height" Grid.Column="1" Grid.Row="5" Style="{StaticResource FormTextBox}"/>
-				
+				<TextBox x:Name="EditName" Text="{Binding User.username, Mode=TwoWay}" d:LayoutOverrides="Width, Height" Grid.Column="1" Style="{StaticResource FormTextBox}"/>
+				<TextBox x:Name="password" Text="{Binding User.password, Mode=TwoWay}" d:LayoutOverrides="Width, Height" Grid.Row="1" Grid.Column="1" Style="{StaticResource FormTextBox}"/>
+				<TextBox x:Name="email" Text="{Binding User.email, Mode=TwoWay}" d:LayoutOverrides="Width, Height" Grid.Column="1" Grid.Row="2" Style="{StaticResource FormTextBox}"/>
+				<TextBox Text="{Binding User.limit_folder, Mode=TwoWay}" d:LayoutOverrides="Width, Height" Grid.Column="1" Grid.Row="3" Style="{StaticResource FormTextBox}" IsEnabled="False"/>
+				<TextBox Text="{Binding User.limit_sze, Mode=TwoWay}" d:LayoutOverrides="Width, Height" Grid.Column="1" Grid.Row="4" Style="{StaticResource FormTextBox}" IsEnabled="False"/>
+				<TextBox Margin="0" Text="{Binding User.limit_files, Mode=TwoWay}" d:LayoutOverrides="Width, Height" Grid.Column="1" Grid.Row="5" Style="{StaticResource FormTextBox}" IsEnabled="False"/>
+				<Button Content="Send" Margin="0" d:LayoutOverrides="Height" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" Padding="10,3,14,3" VerticalAlignment="Center" Command="{Binding UpdateUser, Mode=OneWay}"/>
 			</Grid>
 		</Liquid:Dialog>
 	</Grid>

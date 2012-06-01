@@ -1,0 +1,110 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:Liquid="clr-namespace:Liquid;assembly=Liquid.Popup"
+	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:client_mesh_Utils="clr-namespace:client_mesh.Utils"
+	mc:Ignorable="d"
+	x:Class="client_mesh.FileUploaderControl"
+	d:DesignWidth="640" d:DesignHeight="480">
+
+    <Grid x:Name="LayoutRoot" DataContext="{Binding FileUploaderViewModel, Source={StaticResource ViewModelLocator}}">
+		<Liquid:Dialog Width="200" Height="200" Visibility="Visible" IsOpen="True" IsCloseEnabled="False" IsResizable="True" HorizontalAlignment="Left" Title="Uploader" ButtonsVisibility="Collapsed">
+			<Grid Height="100" Width="100">
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<ListBox Margin="0" ItemsSource="{Binding Items}">
+					<ListBox.Resources>
+						<DataTemplate x:Key="UploadItemTemplate">
+							<Border BorderThickness="1" CornerRadius="5">
+								<Border.BorderBrush>
+									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+										<GradientStop Color="White" Offset="0"/>
+										<GradientStop Color="#FF747474" Offset="1"/>
+									</LinearGradientBrush>
+								</Border.BorderBrush>
+								<Border.Background>
+									<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+										<GradientStop Color="#FF747474"/>
+										<GradientStop Color="White" Offset="1"/>
+									</LinearGradientBrush>
+								</Border.Background>
+								<Grid Margin="15,10">
+									<Grid.RowDefinitions>
+										<RowDefinition/>
+										<RowDefinition Height="Auto"/>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto"/>
+										<ColumnDefinition/>
+									</Grid.ColumnDefinitions>
+									<TextBlock Margin="0" Text="{Binding FileName}" d:LayoutOverrides="VerticalAlignment, Height" HorizontalAlignment="Left"/>
+									<StackPanel Grid.ColumnSpan="2" Margin="0" Orientation="Horizontal" d:LayoutOverrides="Width" Grid.Column="1" HorizontalAlignment="Right">
+										<TextBlock TextWrapping="Wrap" d:LayoutOverrides="Height"><Run Text="0"/><LineBreak/><Run/></TextBlock>
+										<TextBlock TextWrapping="Wrap" Text="/" d:LayoutOverrides="Height"/>
+										<TextBlock TextWrapping="Wrap" Text="{Binding Length}" d:LayoutOverrides="Height"/>
+									</StackPanel>
+									<ProgressBar Grid.ColumnSpan="2" Height="10" VerticalAlignment="Top" Grid.Row="1">
+										<i:Interaction.Behaviors>
+											<client_mesh_Utils:ProgressBarDataStreamBehavior Stream="{Binding DataStream}"/>
+										</i:Interaction.Behaviors>
+									</ProgressBar>
+								</Grid>
+							</Border>
+						</DataTemplate>
+						<Style x:Key="ListBoxItemStyle" TargetType="ListBoxItem">
+							<Setter Property="Padding" Value="3"/>
+							<Setter Property="HorizontalContentAlignment" Value="Left"/>
+							<Setter Property="VerticalContentAlignment" Value="Top"/>
+							<Setter Property="Background" Value="Transparent"/>
+							<Setter Property="BorderThickness" Value="1"/>
+							<Setter Property="TabNavigation" Value="Local"/>
+							<Setter Property="Template">
+								<Setter.Value>
+									<ControlTemplate TargetType="ListBoxItem">
+										<Grid Background="{TemplateBinding Background}">
+											<VisualStateManager.VisualStateGroups>
+												<VisualStateGroup x:Name="CommonStates">
+													<VisualState x:Name="Normal"/>
+													<VisualState x:Name="MouseOver"/>
+													<VisualState x:Name="Disabled">
+														<Storyboard>
+															<DoubleAnimation Duration="0" To=".55" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="contentPresenter"/>
+														</Storyboard>
+													</VisualState>
+												</VisualStateGroup>
+												<VisualStateGroup x:Name="SelectionStates">
+													<VisualState x:Name="Unselected"/>
+													<VisualState x:Name="Selected"/>
+												</VisualStateGroup>
+												<VisualStateGroup x:Name="FocusStates">
+													<VisualState x:Name="Focused"/>
+													<VisualState x:Name="Unfocused"/>
+												</VisualStateGroup>
+											</VisualStateManager.VisualStateGroups>
+											<ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}"/>
+										</Grid>
+									</ControlTemplate>
+								</Setter.Value>
+							</Setter>
+						</Style>
+					</ListBox.Resources>
+					<ListBox.ItemContainerStyle>
+						<StaticResource ResourceKey="ListBoxItemStyle"/>
+					</ListBox.ItemContainerStyle>
+					<ListBox.ItemTemplate>
+						<StaticResource ResourceKey="UploadItemTemplate"/>
+					</ListBox.ItemTemplate>
+				</ListBox>
+				<StackPanel Margin="0" Grid.Row="1" Orientation="Horizontal">
+					<TextBlock Text="{Binding ItemsUploaded, Mode=OneWay}" VerticalAlignment="Top"/>
+					<TextBlock TextWrapping="Wrap" Text=" / "/>
+					<TextBlock TextWrapping="Wrap" Text="{Binding ItemsTotal, Mode=OneWay}"/>
+				</StackPanel>
+			</Grid>
+		</Liquid:Dialog>
+	</Grid>
+</UserControl>

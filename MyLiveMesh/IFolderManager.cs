@@ -13,7 +13,7 @@ namespace MyLiveMesh
         WebResult Delete(int userId, string name);
         WebResult Rename(int userId, string name, string newName);
         WebResult<List<string>> DirList(int userId);
-        WebResult<List<string>> FileList(int userId, string folder);
-        WebResult<byte[]> GetFileFrom(int userId, string folder, string file);
+        WebResult<List<FileDefinition>> FileList(int userId, string folder);
+        WebResult<FileDefinition> GetFileFrom(int userId, string folder, string file);
     }
 }

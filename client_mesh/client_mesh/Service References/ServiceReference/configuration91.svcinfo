@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="s43CkYzekrTJeXSMZL2Pm+Ur2wU=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="5oKr2UoOptKtPLCw7c5J/FmDqPc=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="customBinding" name="CustomBinding_Account">
       <properties>
@@ -115,10 +115,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="CustomBinding_Account" contract="ServiceReference.Account" bindingType="customBinding" address="http://localhost:3500/services/Account.svc" bindingConfiguration="CustomBinding_Account">
+    <endpoint name="CustomBinding_Account" contract="ServiceReference.Account" bindingType="customBinding" address="http://localhost:1991/services/Account.svc" bindingConfiguration="CustomBinding_Account">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:3500/services/Account.svc</serializedValue>
+          <serializedValue>http://localhost:1991/services/Account.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

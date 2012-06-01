@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="MyLiveMesh.services.FileUploadService" CodeBehind="FileUploadService.svc.cs" %>

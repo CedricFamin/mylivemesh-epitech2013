@@ -7,7 +7,7 @@
     xmlns:client_mesh_ViewModel="clr-namespace:client_mesh.ViewModels"
 	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 	xmlns:Liquid="clr-namespace:Liquid;assembly=Liquid.Popup"
-	xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Name="userControl"
+	xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" xmlns:client_mesh_Utils="clr-namespace:client_mesh.Utils" x:Name="userControl"
 	mc:Ignorable="d"
 	x:Class="client_mesh.Dashboard"
 	d:DesignWidth="640" d:DesignHeight="480">
@@ -220,65 +220,6 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
-		<Storyboard x:Name="showProfileForm">
-			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="profileFormWindowControl">
-				<DiscreteObjectKeyFrame KeyTime="0:0:1">
-					<DiscreteObjectKeyFrame.Value>
-						<Visibility>Visible</Visibility>
-					</DiscreteObjectKeyFrame.Value>
-				</DiscreteObjectKeyFrame>
-			</ObjectAnimationUsingKeyFrames>
-			<DoubleAnimation Duration="0:0:1" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="profileFormWindowControl" d:IsOptimized="True"/>
-		</Storyboard>
-		<Storyboard x:Name="HideProfileForm">
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="profileFormWindowControl">
-				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="profileFormWindowControl">
-				<DiscreteObjectKeyFrame KeyTime="0">
-					<DiscreteObjectKeyFrame.Value>
-						<Visibility>Visible</Visibility>
-					</DiscreteObjectKeyFrame.Value>
-				</DiscreteObjectKeyFrame>
-				<DiscreteObjectKeyFrame KeyTime="0:0:1">
-					<DiscreteObjectKeyFrame.Value>
-						<Visibility>Collapsed</Visibility>
-					</DiscreteObjectKeyFrame.Value>
-				</DiscreteObjectKeyFrame>
-			</ObjectAnimationUsingKeyFrames>
-		</Storyboard>
-		<Storyboard x:Name="FolderWindowShow">
-			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="folderWindowControl">
-				<DiscreteObjectKeyFrame KeyTime="0">
-					<DiscreteObjectKeyFrame.Value>
-						<Visibility>Visible</Visibility>
-					</DiscreteObjectKeyFrame.Value>
-				</DiscreteObjectKeyFrame>
-			</ObjectAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="folderWindowControl">
-				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
-			</DoubleAnimationUsingKeyFrames>
-		</Storyboard>
-		<Storyboard x:Name="FolderWindowHide">
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="folderWindowControl">
-				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="folderWindowControl">
-				<DiscreteObjectKeyFrame KeyTime="0">
-					<DiscreteObjectKeyFrame.Value>
-						<Visibility>Visible</Visibility>
-					</DiscreteObjectKeyFrame.Value>
-				</DiscreteObjectKeyFrame>
-				<DiscreteObjectKeyFrame KeyTime="0:0:1">
-					<DiscreteObjectKeyFrame.Value>
-						<Visibility>Collapsed</Visibility>
-					</DiscreteObjectKeyFrame.Value>
-				</DiscreteObjectKeyFrame>
-			</ObjectAnimationUsingKeyFrames>
-		</Storyboard>
 	</UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" DataContext="{Binding DashboardModel, Source={StaticResource ViewModelLocator}}" UseLayoutRounding="False" Margin="0">
@@ -286,71 +227,60 @@
 			<RowDefinition/>
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
-		<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="1" Margin="0">
-			<StackPanel.Background>
+		<Grid Height="42" VerticalAlignment="Bottom" Grid.Row="1">
+			<Grid.Background>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-					<GradientStop Color="#FF5A5B66"/>
+					<GradientStop Color="#FF353535" Offset="0"/>
 					<GradientStop Color="#FF414141" Offset="1"/>
 				</LinearGradientBrush>
-			</StackPanel.Background>
-			<Image x:Name="User" Source="User Card.png" Style="{StaticResource IconeImageStyle}">
-				<i:Interaction.Triggers>
-					<i:EventTrigger EventName="MouseLeftButtonUp" SourceObject="{Binding ElementName=User}">
-						<i:Interaction.Behaviors>
-							<ei:ConditionBehavior>
-								<ei:ConditionalExpression>
-									<ei:ComparisonCondition LeftOperand="{Binding Opacity, ElementName=profileFormWindowControl}" RightOperand="0"/>
-								</ei:ConditionalExpression>
-							</ei:ConditionBehavior>
-						</i:Interaction.Behaviors>
-						<ei:ControlStoryboardAction Storyboard="{StaticResource showProfileForm}"/>
-					</i:EventTrigger>
-					<i:EventTrigger EventName="MouseLeftButtonUp" SourceObject="{Binding ElementName=User}">
-						<i:Interaction.Behaviors>
-							<ei:ConditionBehavior>
-								<ei:ConditionalExpression>
-									<ei:ComparisonCondition LeftOperand="{Binding Opacity, ElementName=profileFormWindowControl}" RightOperand="0" Operator="NotEqual"/>
-								</ei:ConditionalExpression>
-							</ei:ConditionBehavior>
-						</i:Interaction.Behaviors>
-						<ei:ControlStoryboardAction Storyboard="{StaticResource HideProfileForm}"/>
-					</i:EventTrigger>
-				</i:Interaction.Triggers>
-			</Image>
-			<Image x:Name="image" Source="Folder_01.png" Style="{StaticResource IconeImageStyle}">
-				<i:Interaction.Triggers>
-					<i:EventTrigger EventName="MouseLeftButtonUp" SourceObject="{Binding ElementName=image}">
-						<i:Interaction.Behaviors>
-							<ei:ConditionBehavior>
-								<ei:ConditionalExpression>
-									<ei:ComparisonCondition LeftOperand="{Binding Opacity, ElementName=folderWindowControl}" RightOperand="0"/>
-								</ei:ConditionalExpression>
-							</ei:ConditionBehavior>
-						</i:Interaction.Behaviors>
-						<ei:ControlStoryboardAction Storyboard="{StaticResource FolderWindowShow}"/>
-					</i:EventTrigger>
-					<i:EventTrigger EventName="MouseLeftButtonUp" SourceObject="{Binding ElementName=image}">
-						<i:Interaction.Behaviors>
-							<ei:ConditionBehavior>
-								<ei:ConditionalExpression>
-									<ei:ComparisonCondition LeftOperand="{Binding Opacity, ElementName=folderWindowControl}" RightOperand="0" Operator="NotEqual"/>
-								</ei:ConditionalExpression>
-							</ei:ConditionBehavior>
-						</i:Interaction.Behaviors>
-						<ei:ControlStoryboardAction Storyboard="{StaticResource FolderWindowHide}"/>
-					</i:EventTrigger>
-				</i:Interaction.Triggers>
-			</Image>
-			<Image Source="Close.png" Style="{StaticResource IconeImageStyle}"/>
-		</StackPanel>
-		<local:ProfileFormWindowControl x:Name="profileFormWindowControl" Opacity="0" Visibility="Collapsed">
-			<i:Interaction.Triggers>
-				<i:EventTrigger EventName="MouseLeftButtonDown">
-					<ei:ChangePropertyAction/>
-				</i:EventTrigger>
-			</i:Interaction.Triggers>
+			</Grid.Background>
+    		<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0" HorizontalAlignment="Left">
+    			<Image x:Name="image1" Height="32" Width="32" Style="{StaticResource IconeImageStyle}" Source="terminal.png" Stretch="None" Margin="10,8,5,5">
+    				<i:Interaction.Behaviors>
+    					<client_mesh_Utils:ToggleVisbilityBehavior Target="{Binding ElementName=loggerControl}"/>
+    				</i:Interaction.Behaviors>
+    			</Image>
+    			<Image x:Name="User" Source="User Card.png" Style="{StaticResource IconeImageStyle}">
+    				<i:Interaction.Behaviors>
+    					<client_mesh_Utils:ToggleVisbilityBehavior Target="{Binding ElementName=profileFormWindowControl}"/>
+    				</i:Interaction.Behaviors>
+    			</Image>
+    			<Image x:Name="image" Source="Folder_01.png" Style="{StaticResource IconeImageStyle}">
+    				<i:Interaction.Behaviors>
+    					<client_mesh_Utils:ToggleVisbilityBehavior Target="{Binding ElementName=folderWindowControl}"/>
+    				</i:Interaction.Behaviors>
+    			</Image>
+    			<Image Height="32" Width="32" Style="{StaticResource IconeImageStyle}" Source="folder_web_upload.png">
+    				<i:Interaction.Behaviors>
+    					<client_mesh_Utils:ToggleVisbilityBehavior Target="{Binding ElementName=fileUploaderControl}"/>
+    				</i:Interaction.Behaviors>
+    			</Image>
+    			<Image Source="Close.png" Style="{StaticResource IconeImageStyle}"/>
+    		</StackPanel>
+    		<StackPanel Width="100" HorizontalAlignment="Right" Orientation="Horizontal">
+    			<TextBlock TextWrapping="Wrap" Text="{Binding User.username}" VerticalAlignment="Center" Foreground="#FFFFD4D4"/>
+    		</StackPanel>
+    	</Grid>
+		<local:ProfileFormWindowControl x:Name="profileFormWindowControl" Visibility="Collapsed">
+			<i:Interaction.Behaviors>
+				<client_mesh_Utils:BringToFrontBehavior/>
+			</i:Interaction.Behaviors>
 		</local:ProfileFormWindowControl>
-		<local:FolderWindowControl x:Name="folderWindowControl" Visibility="Collapsed" Opacity="0"/>
+		<local:FolderWindowControl x:Name="folderWindowControl" Visibility="Collapsed" Parent="{Binding ElementName=LayoutRoot}">
+			<i:Interaction.Behaviors>
+				<client_mesh_Utils:BringToFrontBehavior/>
+			</i:Interaction.Behaviors>
+		</local:FolderWindowControl>
+		<local:LoggerControl x:Name="loggerControl" Margin="0" d:LayoutOverrides="Width" Visibility="Collapsed">
+			<i:Interaction.Behaviors>
+				<client_mesh_Utils:BringToFrontBehavior/>
+			</i:Interaction.Behaviors>
+		</local:LoggerControl>
+		<local:FileUploaderControl x:Name="fileUploaderControl" Margin="0" d:LayoutOverrides="Width, Height" Visibility="Collapsed">
+			<i:Interaction.Behaviors>
+				<client_mesh_Utils:BringToFrontBehavior/>
+			</i:Interaction.Behaviors>
+		</local:FileUploaderControl>
 		
 		
 		

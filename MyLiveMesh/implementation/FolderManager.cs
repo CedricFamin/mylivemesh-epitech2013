@@ -41,7 +41,7 @@ namespace MyLiveMesh.implementation
             string path = System.IO.Path.Combine(Config.ROOT_PATH, user.username, name);
             if (System.IO.Directory.Exists(path))
             {
-                try   { System.IO.Directory.Delete(path); }
+                try   { System.IO.Directory.Delete(path, true); }
                 catch { return new WebResult(WebResult.ErrorCodeList.CANNOT_DELETE_DIRECTORY); }
             }
             else 
@@ -86,41 +86,48 @@ namespace MyLiveMesh.implementation
             return new WebResult<List<string>>(dirs);
         }
 
-        public WebResult<List<string>> FileList(int userId, string folder)
+        public WebResult<List<FileDefinition>> FileList(int userId, string folder)
         {
-            List<string> files = new List<string>();
+            List<FileDefinition> files = new List<FileDefinition>();
 
             var user = (from u in db.Users where u.id == userId select u).SingleOrDefault();
 
             if (user == default(User))
-                return new WebResult<List<string>>(WebResult.ErrorCodeList.USER_NOT_FOUND);
+                return new WebResult<List<FileDefinition>>(WebResult.ErrorCodeList.USER_NOT_FOUND);
 
             string path = System.IO.Path.Combine(Config.ROOT_PATH, user.username, folder);
             DirectoryInfo dirInfo = new DirectoryInfo(path);
             foreach (FileInfo file in dirInfo.GetFiles())
             {
-                files.Add(file.Name);
+                files.Add(new FileDefinition()
+                    {
+                        FileUri = HttpContext.Current.Request.Url.ToString() + "/../../upload_files/" + user.username + "/" + folder + "/" + file.Name,
+                        Filename = file.Name
+                    });
             }
-            return new WebResult<List<string>>(files);
+            return new WebResult<List<FileDefinition>>(files);
         }
 
-        public WebResult<byte[]> GetFileFrom(int userId, string folder, string file)
+        public WebResult<FileDefinition> GetFileFrom(int userId, string folder, string file)
         {
-            WebResult<byte[]> result = new WebResult<byte[]>();
-
+            WebResult<FileDefinition> result = new WebResult<FileDefinition>();
+            FileDefinition fd = new FileDefinition();
+            result.Value = fd;
             var user = (from u in db.Users where u.id == userId select u).SingleOrDefault();
 
             if (user == default(User))
-                return new WebResult<byte[]>(WebResult.ErrorCodeList.USER_NOT_FOUND);
+                return new WebResult<FileDefinition>(WebResult.ErrorCodeList.USER_NOT_FOUND);
             string path = System.IO.Path.Combine(Config.ROOT_PATH, user.username, folder, file);
             if (System.IO.File.Exists(path))
             {
                 FileStream stream = new FileStream(path, FileMode.Open);
-                result.Value = new byte[stream.Length];
-                stream.Read(result.Value, 0, (int)stream.Length);
+                fd.RawData = new byte[stream.Length];
+                stream.Read(fd.RawData, 0, (int)stream.Length);
+                fd.Filename = file;
+                fd.FileUri = HttpContext.Current.Request.Url.ToString() + "/../../upload_files/" + user.username + "/" + folder + "/" + file;
             }
             else
-                return new WebResult<byte[]>(WebResult.ErrorCodeList.FILE_NOT_FOUND);
+                return new WebResult<FileDefinition>(WebResult.ErrorCodeList.FILE_NOT_FOUND);
 
             return result;
         }

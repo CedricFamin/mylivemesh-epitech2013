@@ -12,7 +12,7 @@ namespace client_mesh.ViewModels
     public class BindableObject : INotifyPropertyChanged
     {
         #region Properties
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
         #endregion
 
         #region Fields

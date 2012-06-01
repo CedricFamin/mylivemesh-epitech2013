@@ -23,7 +23,7 @@ namespace MyLiveMesh
         #endregion
 
         #region CTor
-        Account()
+        public Account()
         {
             AggregateCatalog catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new AssemblyCatalog(typeof(Account).Assembly));

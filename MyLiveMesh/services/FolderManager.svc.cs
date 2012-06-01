@@ -23,10 +23,10 @@ namespace MyLiveMesh.services
         #endregion
 
         #region CTor
-        FolderManager()
+        public FolderManager()
         {
             AggregateCatalog catalog = new AggregateCatalog();
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(Account).Assembly));
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof(FolderManager).Assembly));
 
             _container = new CompositionContainer(catalog);
             try
@@ -66,13 +66,13 @@ namespace MyLiveMesh.services
         }
 
         [OperationContract]
-        public WebResult<List<string>> FileList(int userId, string folder)
+        public WebResult<List<FileDefinition>> FileList(int userId, string folder)
         {
             return this._manager.FileList(userId, folder);
         }
 
         [OperationContract]
-        public WebResult<byte[]> GetFileFrom(int userId, string folder, string file)
+        public WebResult<FileDefinition> GetFileFrom(int userId, string folder, string file)
         {
             return this._manager.GetFileFrom(userId, folder, file);
         }

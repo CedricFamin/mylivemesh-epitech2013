@@ -1,0 +1,28 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:Liquid="clr-namespace:Liquid;assembly=Liquid.Popup"
+	xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+	mc:Ignorable="d"
+	x:Class="client_mesh.LoggerControl"
+	d:DesignWidth="640" d:DesignHeight="480">
+
+    <Grid x:Name="LayoutRoot" DataContext="{Binding LoggerViewModel, Source={StaticResource ViewModelLocator}}">
+		<Liquid:Dialog Width="200" Height="200" IsOpen="True" IsCloseEnabled="False" IsDraggable="True" IsMaximizeEnabled="True" IsMinimizeEnabled="True" IsResizable="True" Title="Logguer" ButtonsVisibility="Collapsed">
+			<ListBox Height="175" Width="195" BorderThickness="0" ItemsSource="{Binding Log}">
+				<ListBox.Resources>
+					<DataTemplate x:Key="DataTemplate">
+						<Grid>
+							<sdk:Label Margin="0,0,0,4" d:LayoutOverrides="Width, Height" Content="{Binding Mode=OneWay}"/>
+						</Grid>
+					</DataTemplate>
+				</ListBox.Resources>
+				<ListBox.ItemTemplate>
+					<StaticResource ResourceKey="DataTemplate"/>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Liquid:Dialog>
+	</Grid>
+</UserControl>

@@ -7,8 +7,17 @@ namespace client_mesh.ViewModels
 {
 	public class LoginPageViewModel : BindableObject
 	{
+        private User _user;
 
-        static User g_User = null;
+        public User User
+        {
+            get { return _user; }
+            set {
+                _user = value;
+                RaisePropertyChange("User");
+            }
+        }
+        
 
         #region properties
         public ICommand Login { get; private set; }
@@ -74,9 +83,8 @@ namespace client_mesh.ViewModels
             {
                 if (args.Result.ErrorCode == WebResult.ErrorCodeList.SUCCESS)
                 {
-                    Username = args.Result.Value.username;
                     Logued = true;
-                    g_User = args.Result.Value;
+                    User = args.Result.Value;
                 }
                 ErrorCode = args.Result.ErrorCode;
             }
