@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="/Imports">
+      <xsd:import schemaLocation="http://localhost:1991/services/FolderManager.svc?xsd=xsd0" />
+      <xsd:import schemaLocation="http://localhost:1991/services/FolderManager.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:1991/services/FolderManager.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils" />
+      <xsd:import schemaLocation="http://localhost:1991/services/FolderManager.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="FolderManager_Create_InputMessage">
+    <wsdl:part name="parameters" element="Create" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_Create_OutputMessage">
+    <wsdl:part name="parameters" element="CreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_Delete_InputMessage">
+    <wsdl:part name="parameters" element="Delete" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_Rename_InputMessage">
+    <wsdl:part name="parameters" element="Rename" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_Rename_OutputMessage">
+    <wsdl:part name="parameters" element="RenameResponse" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_DirList_InputMessage">
+    <wsdl:part name="parameters" element="DirList" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_DirList_OutputMessage">
+    <wsdl:part name="parameters" element="DirListResponse" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_FileList_InputMessage">
+    <wsdl:part name="parameters" element="FileList" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_FileList_OutputMessage">
+    <wsdl:part name="parameters" element="FileListResponse" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_GetFileFrom_InputMessage">
+    <wsdl:part name="parameters" element="GetFileFrom" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_GetFileFrom_OutputMessage">
+    <wsdl:part name="parameters" element="GetFileFromResponse" />
+  </wsdl:message>
+  <wsdl:portType name="FolderManager">
+    <wsdl:operation name="Create">
+      <wsdl:input wsaw:Action="urn:FolderManager/Create" message="FolderManager_Create_InputMessage" />
+      <wsdl:output wsaw:Action="urn:FolderManager/CreateResponse" message="FolderManager_Create_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="urn:FolderManager/Delete" message="FolderManager_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="urn:FolderManager/DeleteResponse" message="FolderManager_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Rename">
+      <wsdl:input wsaw:Action="urn:FolderManager/Rename" message="FolderManager_Rename_InputMessage" />
+      <wsdl:output wsaw:Action="urn:FolderManager/RenameResponse" message="FolderManager_Rename_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DirList">
+      <wsdl:input wsaw:Action="urn:FolderManager/DirList" message="FolderManager_DirList_InputMessage" />
+      <wsdl:output wsaw:Action="urn:FolderManager/DirListResponse" message="FolderManager_DirList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FileList">
+      <wsdl:input wsaw:Action="urn:FolderManager/FileList" message="FolderManager_FileList_InputMessage" />
+      <wsdl:output wsaw:Action="urn:FolderManager/FileListResponse" message="FolderManager_FileList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileFrom">
+      <wsdl:input wsaw:Action="urn:FolderManager/GetFileFrom" message="FolderManager_GetFileFrom_InputMessage" />
+      <wsdl:output wsaw:Action="urn:FolderManager/GetFileFromResponse" message="FolderManager_GetFileFrom_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
