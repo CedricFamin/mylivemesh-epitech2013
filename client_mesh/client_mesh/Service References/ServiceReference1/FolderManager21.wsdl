@@ -6,6 +6,7 @@
       <xsd:import schemaLocation="http://localhost:1991/services/FolderManager.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:1991/services/FolderManager.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils" />
       <xsd:import schemaLocation="http://localhost:1991/services/FolderManager.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:1991/services/FolderManager.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.LinqToSQL" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="FolderManager_Create_InputMessage">
@@ -44,6 +45,30 @@
   <wsdl:message name="FolderManager_GetFileFrom_OutputMessage">
     <wsdl:part name="parameters" element="GetFileFromResponse" />
   </wsdl:message>
+  <wsdl:message name="FolderManager_AddSharing_InputMessage">
+    <wsdl:part name="parameters" element="AddSharing" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_AddSharing_OutputMessage">
+    <wsdl:part name="parameters" element="AddSharingResponse" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_GetSharing_InputMessage">
+    <wsdl:part name="parameters" element="GetSharing" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_GetSharing_OutputMessage">
+    <wsdl:part name="parameters" element="GetSharingResponse" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_GetReceiver_InputMessage">
+    <wsdl:part name="parameters" element="GetReceiver" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_GetReceiver_OutputMessage">
+    <wsdl:part name="parameters" element="GetReceiverResponse" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_DeleteSharing_InputMessage">
+    <wsdl:part name="parameters" element="DeleteSharing" />
+  </wsdl:message>
+  <wsdl:message name="FolderManager_DeleteSharing_OutputMessage">
+    <wsdl:part name="parameters" element="DeleteSharingResponse" />
+  </wsdl:message>
   <wsdl:portType name="FolderManager">
     <wsdl:operation name="Create">
       <wsdl:input wsaw:Action="urn:FolderManager/Create" message="FolderManager_Create_InputMessage" />
@@ -68,6 +93,22 @@
     <wsdl:operation name="GetFileFrom">
       <wsdl:input wsaw:Action="urn:FolderManager/GetFileFrom" message="FolderManager_GetFileFrom_InputMessage" />
       <wsdl:output wsaw:Action="urn:FolderManager/GetFileFromResponse" message="FolderManager_GetFileFrom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSharing">
+      <wsdl:input wsaw:Action="urn:FolderManager/AddSharing" message="FolderManager_AddSharing_InputMessage" />
+      <wsdl:output wsaw:Action="urn:FolderManager/AddSharingResponse" message="FolderManager_AddSharing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSharing">
+      <wsdl:input wsaw:Action="urn:FolderManager/GetSharing" message="FolderManager_GetSharing_InputMessage" />
+      <wsdl:output wsaw:Action="urn:FolderManager/GetSharingResponse" message="FolderManager_GetSharing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReceiver">
+      <wsdl:input wsaw:Action="urn:FolderManager/GetReceiver" message="FolderManager_GetReceiver_InputMessage" />
+      <wsdl:output wsaw:Action="urn:FolderManager/GetReceiverResponse" message="FolderManager_GetReceiver_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSharing">
+      <wsdl:input wsaw:Action="urn:FolderManager/DeleteSharing" message="FolderManager_DeleteSharing_InputMessage" />
+      <wsdl:output wsaw:Action="urn:FolderManager/DeleteSharingResponse" message="FolderManager_DeleteSharing_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

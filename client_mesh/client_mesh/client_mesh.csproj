@@ -123,6 +123,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Controls" />
+    <Reference Include="System.Windows.Controls.Data" />
     <Reference Include="System.Windows.Controls.Data.DataForm.Toolkit, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Data.Input" />
     <Reference Include="System.Windows.Controls.Data.Toolkit, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -145,15 +146,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Utils\BoolToVisibilityConverter.cs" />
     <Compile Include="Utils\BringToFrontBehavior.cs" />
+    <Compile Include="Utils\DownloadTextBehavior.cs" />
+    <Compile Include="Utils\MediaElementBehavior.cs" />
+    <Compile Include="Utils\OpenFileBehavior.cs" />
     <Compile Include="Utils\OpenFolderWIndowBehavior.cs" />
+    <Compile Include="Utils\PanelContainer.cs" />
     <Compile Include="Utils\ProgressBarDataStreamBehavior.cs" />
+    <Compile Include="Utils\RemoveWindowFromParentBehavior.cs" />
     <Compile Include="Utils\ToggleVisbilityBehavior.cs" />
     <Compile Include="ViewModels\FileUploaderViewControl.cs" />
     <Compile Include="ViewModels\FolderViewModel.cs" />
     <Compile Include="ViewModels\LoggerViewModel.cs" />
+    <Compile Include="ViewModels\UserManagementViewModel.cs" />
     <Compile Include="Views\FileUploaderControl.xaml.cs">
       <DependentUpon>FileUploaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ImageWindowControl.xaml.cs">
+      <DependentUpon>ImageWindowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoggerControl.xaml.cs">
       <DependentUpon>LoggerControl.xaml</DependentUpon>
@@ -189,6 +200,15 @@
     <Compile Include="Views\ProfileFormWindowControl.xaml.cs">
       <DependentUpon>ProfileFormWindowControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TextWindowControl.xaml.cs">
+      <DependentUpon>TextWindowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserManagement.xaml.cs">
+      <DependentUpon>UserManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VideoWindowControl.xaml.cs">
+      <DependentUpon>VideoWindowControl.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -196,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Views\FileUploaderControl.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ImageWindowControl.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -227,13 +251,33 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\TextWindowControl.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserManagement.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VideoWindowControl.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\AppManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceReference1\client_mesh.ServiceReference1.WebResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ServiceReference1\client_mesh.ServiceReference1.WebResultOfArrayOfFileDefinitiony8fP_SiTt.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\client_mesh.ServiceReference1.WebResultOfArrayOfSharingBZq_SeKvr.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\client_mesh.ServiceReference1.WebResultOfArrayOfSharingDefinitiony8fP_SiTt.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ServiceReference1\client_mesh.ServiceReference1.WebResultOfArrayOfstringuHEDJ7Dj.datasource">
@@ -241,6 +285,9 @@
     </None>
     <None Include="Service References\ServiceReference1\client_mesh.ServiceReference1.WebResultOfFileDefinitiony8fP_SiTt.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\FolderManager.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference1\FolderManager2.wsdl" />
     <None Include="Service References\ServiceReference1\FolderManager21.wsdl" />
@@ -273,6 +320,9 @@
     <None Include="Service References\ServiceReference\client_mesh.ServiceReference.WebResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ServiceReference\client_mesh.ServiceReference.WebResultOfArrayOfUserBZq_SeKvr.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ServiceReference\client_mesh.ServiceReference.WebResultOfUserBZq_SeKvr.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -302,14 +352,20 @@
     <WCFMetadataStorage Include="Service References\ServiceReference\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Views\admin.png" />
     <Resource Include="Views\Close.png" />
+    <Resource Include="Views\dialog-close.png" />
+    <Resource Include="Views\fast backward.png" />
+    <Resource Include="Views\fast forward.png" />
     <Resource Include="Views\Folder_01.png" />
     <Resource Include="Views\folder_web_upload.png" />
     <Resource Include="Views\genericFile.png" />
+    <Resource Include="Views\pause.png" />
+    <Resource Include="Views\play.png" />
+    <Resource Include="Views\stop.png" />
     <Resource Include="Views\terminal.png" />
     <Resource Include="Views\User Card.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

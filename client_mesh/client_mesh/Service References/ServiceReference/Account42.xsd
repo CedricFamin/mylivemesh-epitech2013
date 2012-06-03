@@ -61,4 +61,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="UserList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils" minOccurs="0" name="UserListResult" nillable="true" type="q6:WebResultOfArrayOfUserBZq_SeKvr" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

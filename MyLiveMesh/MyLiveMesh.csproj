@@ -111,11 +111,11 @@
     </Compile>
     <Compile Include="SilverlightFaultBehavior.cs" />
     <Compile Include="Utils\FileDefinition.cs" />
+    <Compile Include="Utils\SharingDefinition.cs" />
     <Compile Include="Utils\WebResult.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="LinqToSQL\MyLiveMeshDB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

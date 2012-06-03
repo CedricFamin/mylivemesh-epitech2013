@@ -2,10 +2,16 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="MyLiveMeshDB">
   <DataContextMoniker Name="/MyLiveMeshDBDataContext" />
   <nestedChildShapes>
-    <classShape Id="5f30a7ca-0781-4bbd-8ce0-c3e0d5ad6f45" absoluteBounds="6.625, 1.5, 2, 2.5401025390625">
+    <classShape Id="39567809-4085-49b7-9d18-269e82f779ce" absoluteBounds="7.5, 2.125, 2, 2.5401025390625">
       <DataClassMoniker Name="/MyLiveMeshDBDataContext/User" />
       <nestedChildShapes>
-        <elementListCompartment Id="a8b3a6ed-fa1d-4d42-b7a4-91609dc9fe31" absoluteBounds="6.64, 1.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="8d45d19a-9970-4c11-a403-1a9e0babc935" absoluteBounds="7.515, 2.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="72769816-8706-4b72-8464-ad027ba69b52" absoluteBounds="5.125, 2.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/MyLiveMeshDBDataContext/Sharing" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dae7adb2-d2f7-41a5-b268-053d30682ca7" absoluteBounds="5.14, 3.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

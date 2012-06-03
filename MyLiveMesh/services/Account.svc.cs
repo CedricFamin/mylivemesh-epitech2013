@@ -7,6 +7,7 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using MyLiveMesh.Utils;
 using MyLiveMesh.LinqToSQL;
+using System.Collections.Generic;
 
 namespace MyLiveMesh
 {
@@ -63,6 +64,12 @@ namespace MyLiveMesh
         public WebResult Delete(int id)
         {
             return this._account.Delete(id);
+        }
+
+        [OperationContract]
+        public WebResult<List<User>> UserList()
+        {
+            return this._account.UserList();
         }
         #endregion
     }

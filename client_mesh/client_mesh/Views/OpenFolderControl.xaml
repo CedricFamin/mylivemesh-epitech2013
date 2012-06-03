@@ -9,53 +9,118 @@
 	xmlns:controlsInputToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
 	xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
 	xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+	xmlns:client_mesh_Utils="clr-namespace:client_mesh.Utils"
 	mc:Ignorable="d"
 	x:Class="client_mesh.OpenFolderControl"
-	d:DesignWidth="640" d:DesignHeight="480">
+	d:DesignWidth="640" d:DesignHeight="480"
+	x:Name="UserControl">
 	<UserControl.Resources>
+		<ContentControl x:Key="cc1" Content="{Binding}" />
 		<ItemsPanelTemplate x:Key="FileItemsPanel">
 			<toolkit:WrapPanel/>
 		</ItemsPanelTemplate>
+		<DataTemplate x:Key="DeleteSharingTemplate">
+			<Image x:Name="image" Source="dialog-close.png" Width="16" Height="16" Cursor="Hand">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="MouseLeftButtonUp">
+						<i:InvokeCommandAction Command="{Binding Content.DeleteSharing, Source={StaticResource cc1}}" CommandParameter="{Binding}"/>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Image>
+		</DataTemplate>
 	</UserControl.Resources>
 
 	<Grid x:Name="LayoutRoot">
 		<Liquid:Dialog x:Name="FolderWindow" Height="400" Width="400" Title="{Binding Name}" IsResizable="True" Buttons="None" ButtonsVisibility="Collapsed" IsCloseEnabled="True" IsDraggable="True" CornerRadius="2" IsOpen="True" Visibility="Visible" GripSize="4" Margin="160,136,0,0">
-			<Grid Width="195">
-				<Grid.RowDefinitions>
-					<RowDefinition/>
-					<RowDefinition/>
-				</Grid.RowDefinitions>
+			<Grid Width="195" Height="375">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition/>
 				</Grid.ColumnDefinitions>
-				<StackPanel Margin="5" Orientation="Vertical" Grid.RowSpan="2">
-					<Button Content="Upload" Margin="10" Command="{Binding UploadFiles}"/>
-					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Stretch" Style="{StaticResource TitleStyle}" Margin="0"><Run Text="Share this folder"/><LineBreak/><Run/></TextBlock>
-					<Grid Height="22">
+				<Grid Margin="5" Grid.RowSpan="2">
+					<Button Content="Upload" Margin="10,10,10,0" Command="{Binding UploadFiles}" VerticalAlignment="Top"/>
+					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TitleStyle}" Margin="0,42,0,0"><Run Text="Share this folder"/><LineBreak/><Run/></TextBlock>
+					<Grid Height="22" Margin="0,81,0,0" VerticalAlignment="Top">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition/>
 							<ColumnDefinition Width="Auto"/>
 						</Grid.ColumnDefinitions>
-						<ComboBox d:LayoutOverrides="Height"/>
-						<Button Content="Ok" HorizontalAlignment="Left" Margin="0" d:LayoutOverrides="Height" Grid.Column="1"/>
+						<ComboBox x:Name="comboBox" d:LayoutOverrides="Height" ItemsSource="{Binding Users}" DisplayMemberPath="username">
+							<i:Interaction.Triggers>
+								<i:EventTrigger>
+									<i:InvokeCommandAction Command="{Binding RefreshUserList}"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</ComboBox>
+						<Button Content="Ok" HorizontalAlignment="Left" Margin="0" d:LayoutOverrides="Height" Grid.Column="1" Command="{Binding AddSharing}" CommandParameter="{Binding SelectedItem, ElementName=comboBox}"/>
 					</Grid>
-					<ListBox Height="100"/>
-				</StackPanel>
+					<sdk:DataGrid Margin="0,103,0,0" ItemsSource="{Binding Receivers}" AutoGenerateColumns="False">
+						<i:Interaction.Triggers>
+							<i:EventTrigger>
+								<i:InvokeCommandAction Command="{Binding GetReceiver}"/>
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+						<sdk:DataGrid.Columns>
+							<sdk:DataGridTextColumn Binding="{Binding Username}" Header="Username" IsReadOnly="True" CanUserReorder="False"/>
+							<sdk:DataGridTemplateColumn Header="Delete" CellTemplate="{StaticResource DeleteSharingTemplate}" CanUserReorder="False"/>
+						</sdk:DataGrid.Columns>
+					</sdk:DataGrid>
+				</Grid>
 				<ListBox Margin="5" Grid.Column="1" Grid.RowSpan="2" ItemsSource="{Binding Files}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 					<ListBox.Resources>
 						<DataTemplate x:Key="FileTemplate">
-							<Grid Margin="3" Width="82">
+							<Grid x:Name="grid" Margin="3" Width="82">
+								<i:Interaction.Behaviors>
+									<client_mesh_Utils:OpenFileBehavior Receiver="{Binding ElementName=grid}"/>
+								</i:Interaction.Behaviors>
+								
 								<StackPanel x:Name="stackPanel" Margin="1">
 									<Image Source="genericFile.png" Width="64" Margin="8,0" Height="64"/>
-									<HyperlinkButton Content="{Binding Filename}" NavigateUri="{Binding FileUri}" TargetName="_blank" />
+									<HyperlinkButton Content="{Binding Filename}" NavigateUri="{Binding FileUri}" TargetName="_blank" >
+										<HyperlinkButton.Resources>
+											<Style x:Key="HyperlinkButtonStyle1" TargetType="HyperlinkButton">
+												<Setter Property="Background"
+													Value="Transparent" />
+												<Setter Property="Padding"
+													Value="0" />
+												<Setter Property="Template">
+													<Setter.Value>
+														<ControlTemplate TargetType="HyperlinkButton">
+															<Border Background="Transparent">
+																<VisualStateManager.VisualStateGroups>
+																	<VisualStateGroup x:Name="CommonStates">
+																		<VisualState x:Name="Normal" />
+																		<VisualState x:Name="MouseOver" />
+																		<VisualState x:Name="Pressed">
+																			<Storyboard>
+																				<DoubleAnimation Duration="0"
+																					To="0.5"
+																					Storyboard.TargetProperty="Opacity"
+																					Storyboard.TargetName="TextElement" />
+																			</Storyboard>
+																		</VisualState>
+																	</VisualStateGroup>
+																</VisualStateManager.VisualStateGroups>
+																<Border Background="{TemplateBinding Background}">
+																	<TextBlock x:Name="TextElement"
+																		HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+																		Text="{TemplateBinding Content}"
+																		TextDecorations="Underline"
+																		VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+																		TextWrapping="Wrap" />
+																</Border>
+															</Border>
+														</ControlTemplate>
+													</Setter.Value>
+												</Setter>
+
+											</Style>
+										</HyperlinkButton.Resources>
+										<HyperlinkButton.Style>
+											<StaticResource ResourceKey="HyperlinkButtonStyle1"/>
+										</HyperlinkButton.Style>
+									</HyperlinkButton>
 								</StackPanel>
-								<toolkit:ContextMenuService.ContextMenu>
-									<toolkit:ContextMenu>
-										<toolkit:MenuItem  Header="Open" Command="{Binding ElementName=FolderWindow, Path=DataContext.DownloadFile}" CommandParameter="{Binding DataContext, ElementName=stackPanel}" />	
-									</toolkit:ContextMenu>
-								</toolkit:ContextMenuService.ContextMenu>
-								
 							</Grid>
 						</DataTemplate>
 					</ListBox.Resources>

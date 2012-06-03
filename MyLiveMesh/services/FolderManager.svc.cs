@@ -8,6 +8,7 @@ using System.ComponentModel.Composition.Hosting;
 using MyLiveMesh.Utils;
 using System.Collections.Generic;
 using System.IO;
+using MyLiveMesh.LinqToSQL;
 
 namespace MyLiveMesh.services
 {
@@ -77,5 +78,29 @@ namespace MyLiveMesh.services
             return this._manager.GetFileFrom(userId, folder, file);
         }
         #endregion
+
+        [OperationContract]
+        public WebResult AddSharing(int ownerId, int friendId, string folder)
+        {
+            return this._manager.AddSharing(ownerId, friendId, folder);
+        }
+
+        [OperationContract]
+        public WebResult<List<Sharing>> GetSharing(int userId)
+        {
+            return this._manager.GetSharing(userId);
+        }
+
+        [OperationContract]
+        public WebResult<List<SharingDefinition>> GetReceiver(int userId, string folder)
+        {
+            return this._manager.GetReceiver(userId, folder);
+        }
+
+        [OperationContract]
+        public WebResult DeleteSharing(int sharingId)
+        {
+            return this._manager.DeleteSharing(sharingId);
+        }
     }
 }

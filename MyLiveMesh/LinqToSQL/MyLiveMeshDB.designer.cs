@@ -33,6 +33,9 @@ namespace MyLiveMesh.LinqToSQL
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertSharing(Sharing instance);
+    partial void UpdateSharing(Sharing instance);
+    partial void DeleteSharing(Sharing instance);
     #endregion
 		
 		public MyLiveMeshDBDataContext() : 
@@ -70,6 +73,14 @@ namespace MyLiveMesh.LinqToSQL
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Sharing> Sharings
+		{
+			get
+			{
+				return this.GetTable<Sharing>();
 			}
 		}
 	}
@@ -303,6 +314,164 @@ namespace MyLiveMesh.LinqToSQL
 					this._limit_sze = value;
 					this.SendPropertyChanged("limit_sze");
 					this.Onlimit_szeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Sharing")]
+	public partial class Sharing : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _user;
+		
+		private string _folder;
+		
+		private int _idOwner;
+		
+		private int _idRecevier;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnuserChanging(string value);
+    partial void OnuserChanged();
+    partial void OnfolderChanging(string value);
+    partial void OnfolderChanged();
+    partial void OnidOwnerChanging(int value);
+    partial void OnidOwnerChanged();
+    partial void OnidRecevierChanging(int value);
+    partial void OnidRecevierChanged();
+    #endregion
+		
+		public Sharing()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[user]", Storage="_user", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string user
+		{
+			get
+			{
+				return this._user;
+			}
+			set
+			{
+				if ((this._user != value))
+				{
+					this.OnuserChanging(value);
+					this.SendPropertyChanging();
+					this._user = value;
+					this.SendPropertyChanged("user");
+					this.OnuserChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_folder", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string folder
+		{
+			get
+			{
+				return this._folder;
+			}
+			set
+			{
+				if ((this._folder != value))
+				{
+					this.OnfolderChanging(value);
+					this.SendPropertyChanging();
+					this._folder = value;
+					this.SendPropertyChanged("folder");
+					this.OnfolderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idOwner", DbType="Int NOT NULL")]
+		public int idOwner
+		{
+			get
+			{
+				return this._idOwner;
+			}
+			set
+			{
+				if ((this._idOwner != value))
+				{
+					this.OnidOwnerChanging(value);
+					this.SendPropertyChanging();
+					this._idOwner = value;
+					this.SendPropertyChanged("idOwner");
+					this.OnidOwnerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idRecevier", DbType="Int NOT NULL")]
+		public int idRecevier
+		{
+			get
+			{
+				return this._idRecevier;
+			}
+			set
+			{
+				if ((this._idRecevier != value))
+				{
+					this.OnidRecevierChanging(value);
+					this.SendPropertyChanging();
+					this._idRecevier = value;
+					this.SendPropertyChanged("idRecevier");
+					this.OnidRecevierChanged();
 				}
 			}
 		}

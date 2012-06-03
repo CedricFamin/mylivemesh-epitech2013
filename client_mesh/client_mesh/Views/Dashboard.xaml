@@ -12,6 +12,7 @@
 	x:Class="client_mesh.Dashboard"
 	d:DesignWidth="640" d:DesignHeight="480">
 	<UserControl.Resources>
+		<client_mesh_Utils:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
 		<Style x:Key="ActionButtonIcon" TargetType="Button">
 			<Setter Property="Background" Value="#FF1F3B53"/>
 			<Setter Property="Foreground" Value="#FF000000"/>
@@ -255,6 +256,11 @@
     					<client_mesh_Utils:ToggleVisbilityBehavior Target="{Binding ElementName=fileUploaderControl}"/>
     				</i:Interaction.Behaviors>
     			</Image>
+    			<Image Height="32" Width="32" Style="{StaticResource IconeImageStyle}" Source="admin.png" Visibility="{Binding User.superuser, Converter={StaticResource BoolToVisibilityConverter}}">
+    				<i:Interaction.Behaviors>
+    					<client_mesh_Utils:ToggleVisbilityBehavior Target="{Binding ElementName=userManagement}"/>
+    				</i:Interaction.Behaviors>
+    			</Image>
     			<Image Source="Close.png" Style="{StaticResource IconeImageStyle}"/>
     		</StackPanel>
     		<StackPanel Width="100" HorizontalAlignment="Right" Orientation="Horizontal">
@@ -281,6 +287,11 @@
 				<client_mesh_Utils:BringToFrontBehavior/>
 			</i:Interaction.Behaviors>
 		</local:FileUploaderControl>
+		<local:UserManagement x:Name="userManagement" d:LayoutOverrides="Width, Height" Visibility="Collapsed">
+			<i:Interaction.Behaviors>
+				<client_mesh_Utils:BringToFrontBehavior/>
+			</i:Interaction.Behaviors>
+		</local:UserManagement>
 		
 		
 		

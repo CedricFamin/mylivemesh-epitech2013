@@ -32,6 +32,12 @@
   <wsdl:message name="Account_Delete_OutputMessage">
     <wsdl:part name="parameters" element="DeleteResponse" />
   </wsdl:message>
+  <wsdl:message name="Account_UserList_InputMessage">
+    <wsdl:part name="parameters" element="UserList" />
+  </wsdl:message>
+  <wsdl:message name="Account_UserList_OutputMessage">
+    <wsdl:part name="parameters" element="UserListResponse" />
+  </wsdl:message>
   <wsdl:portType name="Account">
     <wsdl:operation name="Register">
       <wsdl:input wsaw:Action="urn:Account/Register" message="Account_Register_InputMessage" />
@@ -48,6 +54,10 @@
     <wsdl:operation name="Delete">
       <wsdl:input wsaw:Action="urn:Account/Delete" message="Account_Delete_InputMessage" />
       <wsdl:output wsaw:Action="urn:Account/DeleteResponse" message="Account_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserList">
+      <wsdl:input wsaw:Action="urn:Account/UserList" message="Account_UserList_InputMessage" />
+      <wsdl:output wsaw:Action="urn:Account/UserListResponse" message="Account_UserList_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

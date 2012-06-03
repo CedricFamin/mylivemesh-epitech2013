@@ -33,7 +33,8 @@ namespace MyLiveMesh.implementation
                 superuser = false,
                 root_path = username
             };
-            System.IO.Directory.CreateDirectory(System.IO.Path.Combine(Config.ROOT_PATH, user.root_path));
+            string path = System.IO.Path.Combine(HttpContext.Current.Server.MapPath("~"), "upload_files", user.root_path);
+            System.IO.Directory.CreateDirectory(path);
             db.Users.InsertOnSubmit(user);
             db.SubmitChanges();
             return result;
@@ -56,8 +57,10 @@ namespace MyLiveMesh.implementation
             try
             {
                 var user = (from u in db.Users where u.id == updateUser.id select u).Single();
+                user.username = updateUser.username;
                 user.password = updateUser.password;
                 user.email = updateUser.email;
+                user.superuser = updateUser.superuser;
                 user.limit_folder = updateUser.limit_folder;
                 user.limit_files = updateUser.limit_files;
                 user.limit_sze = updateUser.limit_sze;
@@ -83,6 +86,12 @@ namespace MyLiveMesh.implementation
             {
                 return new WebResult(WebResult.ErrorCodeList.USER_NOT_FOUND);
             }
+        }
+
+
+        public WebResult<List<User>> UserList()
+        {
+            return new WebResult<List<User>>(db.Users.ToList());
         }
     }
 }

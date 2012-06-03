@@ -61,6 +61,9 @@ namespace client_mesh.ViewModels
         static private List<FolderDefinition> _folders = new List<FolderDefinition>();
         public List<FolderDefinition> Folders { get { return _folders; } }
 
+        static private UserManagementViewModel _userManagementViewModel = new UserManagementViewModel();
+        public UserManagementViewModel UserManagementViewModel { get { return _userManagementViewModel; } }
+
         public ViewModelLocator()
         {
 

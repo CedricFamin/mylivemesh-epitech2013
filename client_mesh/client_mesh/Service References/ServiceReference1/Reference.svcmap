@@ -14,7 +14,7 @@
     <GenerateSerializableTypes>false</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
     <ReferencedAssemblies />
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
@@ -23,6 +23,7 @@
     <MetadataSource Address="http://localhost:1991/services/FolderManager.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="FolderManager.xsd" MetadataType="Schema" ID="b127b71e-01ae-4e15-b15f-7aeb43c21004" SourceId="1" SourceUrl="http://localhost:1991/services/FolderManager.svc?xsd=xsd4" />
     <MetadataFile FileName="FolderManager4.xsd" MetadataType="Schema" ID="5d1adf96-83cc-407b-b971-4b3f19fe44e2" SourceId="1" SourceUrl="http://localhost:1991/services/FolderManager.svc?xsd=xsd3" />
     <MetadataFile FileName="FolderManager2.wsdl" MetadataType="Wsdl" ID="086ba057-1fd0-4314-a7b7-9eb8ac68ad11" SourceId="1" SourceUrl="http://localhost:1991/services/FolderManager.svc?wsdl" />
     <MetadataFile FileName="FolderManager41.xsd" MetadataType="Schema" ID="51a53be8-4ff6-4a07-8bd0-e5138518f61c" SourceId="1" SourceUrl="http://localhost:1991/services/FolderManager.svc?xsd=xsd2" />

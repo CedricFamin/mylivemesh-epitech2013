@@ -47,8 +47,11 @@ namespace client_mesh.Utils
 
         void AssociatedObject_Click(object sender, RoutedEventArgs e)
         {
-            OpenFolderControl win = new OpenFolderControl();
-            win.DataContext = DataContext;
+            OpenFolderControl win = new OpenFolderControl()
+            {
+                DataContext = DataContext,
+            };
+            
             BringToFrontBehavior bh = new BringToFrontBehavior();
             Interaction.GetBehaviors(win).Add(bh);
             DependencyObject parent = Receiver;
@@ -62,19 +65,8 @@ namespace client_mesh.Utils
             if (canvas != null)
             {
                 canvas.Parent.Children.Add(win);
+                win.Container = canvas.Parent;
             }
         }
-
-        void AssociatedObject_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
-
-        public void Open()
-        {
-            
-
-        }
-        
     }
 }

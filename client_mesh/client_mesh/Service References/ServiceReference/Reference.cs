@@ -19,6 +19,7 @@ namespace client_mesh.ServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="WebResult", Namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils")]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(client_mesh.ServiceReference.WebResultOfUserBZq_SeKvr))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(client_mesh.ServiceReference.WebResultOfArrayOfUserBZq_SeKvr))]
     public partial class WebResult : object, System.ComponentModel.INotifyPropertyChanged {
         
         private client_mesh.ServiceReference.WebResult.ErrorCodeList ErrorCodeField;
@@ -87,6 +88,27 @@ namespace client_mesh.ServiceReference {
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public client_mesh.ServiceReference.User Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValueField, value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WebResultOfArrayOfUserBZq_SeKvr", Namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils")]
+    public partial class WebResultOfArrayOfUserBZq_SeKvr : client_mesh.ServiceReference.WebResult {
+        
+        private System.Collections.ObjectModel.ObservableCollection<client_mesh.ServiceReference.User> ValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<client_mesh.ServiceReference.User> Value {
             get {
                 return this.ValueField;
             }
@@ -272,6 +294,11 @@ namespace client_mesh.ServiceReference {
         System.IAsyncResult BeginDelete(int id, System.AsyncCallback callback, object asyncState);
         
         client_mesh.ServiceReference.WebResult EndDelete(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:Account/UserList", ReplyAction="urn:Account/UserListResponse")]
+        System.IAsyncResult BeginUserList(System.AsyncCallback callback, object asyncState);
+        
+        client_mesh.ServiceReference.WebResultOfArrayOfUserBZq_SeKvr EndUserList(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -356,6 +383,25 @@ namespace client_mesh.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UserListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public UserListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public client_mesh.ServiceReference.WebResultOfArrayOfUserBZq_SeKvr Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((client_mesh.ServiceReference.WebResultOfArrayOfUserBZq_SeKvr)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class AccountClient : System.ServiceModel.ClientBase<client_mesh.ServiceReference.Account>, client_mesh.ServiceReference.Account {
         
         private BeginOperationDelegate onBeginRegisterDelegate;
@@ -381,6 +427,12 @@ namespace client_mesh.ServiceReference {
         private EndOperationDelegate onEndDeleteDelegate;
         
         private System.Threading.SendOrPostCallback onDeleteCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginUserListDelegate;
+        
+        private EndOperationDelegate onEndUserListDelegate;
+        
+        private System.Threading.SendOrPostCallback onUserListCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -442,6 +494,8 @@ namespace client_mesh.ServiceReference {
         public event System.EventHandler<UpdateCompletedEventArgs> UpdateCompleted;
         
         public event System.EventHandler<DeleteCompletedEventArgs> DeleteCompleted;
+        
+        public event System.EventHandler<UserListCompletedEventArgs> UserListCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -637,6 +691,50 @@ namespace client_mesh.ServiceReference {
                         id}, this.onEndDeleteDelegate, this.onDeleteCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult client_mesh.ServiceReference.Account.BeginUserList(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUserList(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        client_mesh.ServiceReference.WebResultOfArrayOfUserBZq_SeKvr client_mesh.ServiceReference.Account.EndUserList(System.IAsyncResult result) {
+            return base.Channel.EndUserList(result);
+        }
+        
+        private System.IAsyncResult OnBeginUserList(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((client_mesh.ServiceReference.Account)(this)).BeginUserList(callback, asyncState);
+        }
+        
+        private object[] OnEndUserList(System.IAsyncResult result) {
+            client_mesh.ServiceReference.WebResultOfArrayOfUserBZq_SeKvr retVal = ((client_mesh.ServiceReference.Account)(this)).EndUserList(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnUserListCompleted(object state) {
+            if ((this.UserListCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.UserListCompleted(this, new UserListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void UserListAsync() {
+            this.UserListAsync(null);
+        }
+        
+        public void UserListAsync(object userState) {
+            if ((this.onBeginUserListDelegate == null)) {
+                this.onBeginUserListDelegate = new BeginOperationDelegate(this.OnBeginUserList);
+            }
+            if ((this.onEndUserListDelegate == null)) {
+                this.onEndUserListDelegate = new EndOperationDelegate(this.OnEndUserList);
+            }
+            if ((this.onUserListCompletedDelegate == null)) {
+                this.onUserListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnUserListCompleted);
+            }
+            base.InvokeAsync(this.onBeginUserListDelegate, null, this.onEndUserListDelegate, this.onUserListCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -765,6 +863,18 @@ namespace client_mesh.ServiceReference {
             public client_mesh.ServiceReference.WebResult EndDelete(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 client_mesh.ServiceReference.WebResult _result = ((client_mesh.ServiceReference.WebResult)(base.EndInvoke("Delete", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginUserList(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("UserList", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public client_mesh.ServiceReference.WebResultOfArrayOfUserBZq_SeKvr EndUserList(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                client_mesh.ServiceReference.WebResultOfArrayOfUserBZq_SeKvr _result = ((client_mesh.ServiceReference.WebResultOfArrayOfUserBZq_SeKvr)(base.EndInvoke("UserList", _args, result)));
                 return _result;
             }
         }

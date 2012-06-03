@@ -21,6 +21,8 @@ namespace client_mesh.ServiceReference1 {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(client_mesh.ServiceReference1.WebResultOfArrayOfstringuHEDJ7Dj))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(client_mesh.ServiceReference1.WebResultOfArrayOfFileDefinitiony8fP_SiTt))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(client_mesh.ServiceReference1.WebResultOfFileDefinitiony8fP_SiTt))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(client_mesh.ServiceReference1.WebResultOfArrayOfSharingBZq_SeKvr))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(client_mesh.ServiceReference1.WebResultOfArrayOfSharingDefinitiony8fP_SiTt))]
     public partial class WebResult : object, System.ComponentModel.INotifyPropertyChanged {
         
         private client_mesh.ServiceReference1.WebResult.ErrorCodeList ErrorCodeField;
@@ -145,12 +147,56 @@ namespace client_mesh.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WebResultOfArrayOfSharingBZq_SeKvr", Namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils")]
+    public partial class WebResultOfArrayOfSharingBZq_SeKvr : client_mesh.ServiceReference1.WebResult {
+        
+        private System.Collections.ObjectModel.ObservableCollection<client_mesh.ServiceReference1.Sharing> ValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<client_mesh.ServiceReference1.Sharing> Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValueField, value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WebResultOfArrayOfSharingDefinitiony8fP_SiTt", Namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils")]
+    public partial class WebResultOfArrayOfSharingDefinitiony8fP_SiTt : client_mesh.ServiceReference1.WebResult {
+        
+        private System.Collections.ObjectModel.ObservableCollection<client_mesh.ServiceReference1.SharingDefinition> ValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<client_mesh.ServiceReference1.SharingDefinition> Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValueField, value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="FileDefinition", Namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils")]
     public partial class FileDefinition : object, System.ComponentModel.INotifyPropertyChanged {
         
         private string FileUriField;
         
         private string FilenameField;
+        
+        private string MimeTypeField;
         
         private byte[] RawDataField;
         
@@ -181,6 +227,19 @@ namespace client_mesh.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MimeType {
+            get {
+                return this.MimeTypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MimeTypeField, value) != true)) {
+                    this.MimeTypeField = value;
+                    this.RaisePropertyChanged("MimeType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public byte[] RawData {
             get {
                 return this.RawDataField;
@@ -189,6 +248,141 @@ namespace client_mesh.ServiceReference1 {
                 if ((object.ReferenceEquals(this.RawDataField, value) != true)) {
                     this.RawDataField = value;
                     this.RaisePropertyChanged("RawData");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Sharing", Namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.LinqToSQL")]
+    public partial class Sharing : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string folderField;
+        
+        private int idField;
+        
+        private int idOwnerField;
+        
+        private int idRecevierField;
+        
+        private string userField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string folder {
+            get {
+                return this.folderField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.folderField, value) != true)) {
+                    this.folderField = value;
+                    this.RaisePropertyChanged("folder");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idOwner {
+            get {
+                return this.idOwnerField;
+            }
+            set {
+                if ((this.idOwnerField.Equals(value) != true)) {
+                    this.idOwnerField = value;
+                    this.RaisePropertyChanged("idOwner");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idRecevier {
+            get {
+                return this.idRecevierField;
+            }
+            set {
+                if ((this.idRecevierField.Equals(value) != true)) {
+                    this.idRecevierField = value;
+                    this.RaisePropertyChanged("idRecevier");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string user {
+            get {
+                return this.userField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.userField, value) != true)) {
+                    this.userField = value;
+                    this.RaisePropertyChanged("user");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SharingDefinition", Namespace="http://schemas.datacontract.org/2004/07/MyLiveMesh.Utils")]
+    public partial class SharingDefinition : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int SharingIdField;
+        
+        private string UsernameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SharingId {
+            get {
+                return this.SharingIdField;
+            }
+            set {
+                if ((this.SharingIdField.Equals(value) != true)) {
+                    this.SharingIdField = value;
+                    this.RaisePropertyChanged("SharingId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
                 }
             }
         }
@@ -236,6 +430,26 @@ namespace client_mesh.ServiceReference1 {
         System.IAsyncResult BeginGetFileFrom(int userId, string folder, string file, System.AsyncCallback callback, object asyncState);
         
         client_mesh.ServiceReference1.WebResultOfFileDefinitiony8fP_SiTt EndGetFileFrom(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:FolderManager/AddSharing", ReplyAction="urn:FolderManager/AddSharingResponse")]
+        System.IAsyncResult BeginAddSharing(int ownerId, int friendId, string folder, System.AsyncCallback callback, object asyncState);
+        
+        client_mesh.ServiceReference1.WebResult EndAddSharing(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:FolderManager/GetSharing", ReplyAction="urn:FolderManager/GetSharingResponse")]
+        System.IAsyncResult BeginGetSharing(int userId, System.AsyncCallback callback, object asyncState);
+        
+        client_mesh.ServiceReference1.WebResultOfArrayOfSharingBZq_SeKvr EndGetSharing(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:FolderManager/GetReceiver", ReplyAction="urn:FolderManager/GetReceiverResponse")]
+        System.IAsyncResult BeginGetReceiver(int userId, string folder, System.AsyncCallback callback, object asyncState);
+        
+        client_mesh.ServiceReference1.WebResultOfArrayOfSharingDefinitiony8fP_SiTt EndGetReceiver(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="urn:FolderManager/DeleteSharing", ReplyAction="urn:FolderManager/DeleteSharingResponse")]
+        System.IAsyncResult BeginDeleteSharing(int sharingId, System.AsyncCallback callback, object asyncState);
+        
+        client_mesh.ServiceReference1.WebResult EndDeleteSharing(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -358,6 +572,82 @@ namespace client_mesh.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddSharingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddSharingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public client_mesh.ServiceReference1.WebResult Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((client_mesh.ServiceReference1.WebResult)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetSharingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetSharingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public client_mesh.ServiceReference1.WebResultOfArrayOfSharingBZq_SeKvr Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((client_mesh.ServiceReference1.WebResultOfArrayOfSharingBZq_SeKvr)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetReceiverCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetReceiverCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public client_mesh.ServiceReference1.WebResultOfArrayOfSharingDefinitiony8fP_SiTt Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((client_mesh.ServiceReference1.WebResultOfArrayOfSharingDefinitiony8fP_SiTt)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class DeleteSharingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public DeleteSharingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public client_mesh.ServiceReference1.WebResult Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((client_mesh.ServiceReference1.WebResult)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class FolderManagerClient : System.ServiceModel.ClientBase<client_mesh.ServiceReference1.FolderManager>, client_mesh.ServiceReference1.FolderManager {
         
         private BeginOperationDelegate onBeginCreateDelegate;
@@ -395,6 +685,30 @@ namespace client_mesh.ServiceReference1 {
         private EndOperationDelegate onEndGetFileFromDelegate;
         
         private System.Threading.SendOrPostCallback onGetFileFromCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddSharingDelegate;
+        
+        private EndOperationDelegate onEndAddSharingDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddSharingCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetSharingDelegate;
+        
+        private EndOperationDelegate onEndGetSharingDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetSharingCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetReceiverDelegate;
+        
+        private EndOperationDelegate onEndGetReceiverDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetReceiverCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginDeleteSharingDelegate;
+        
+        private EndOperationDelegate onEndDeleteSharingDelegate;
+        
+        private System.Threading.SendOrPostCallback onDeleteSharingCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -460,6 +774,14 @@ namespace client_mesh.ServiceReference1 {
         public event System.EventHandler<FileListCompletedEventArgs> FileListCompleted;
         
         public event System.EventHandler<GetFileFromCompletedEventArgs> GetFileFromCompleted;
+        
+        public event System.EventHandler<AddSharingCompletedEventArgs> AddSharingCompleted;
+        
+        public event System.EventHandler<GetSharingCompletedEventArgs> GetSharingCompleted;
+        
+        public event System.EventHandler<GetReceiverCompletedEventArgs> GetReceiverCompleted;
+        
+        public event System.EventHandler<DeleteSharingCompletedEventArgs> DeleteSharingCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -755,6 +1077,196 @@ namespace client_mesh.ServiceReference1 {
                         file}, this.onEndGetFileFromDelegate, this.onGetFileFromCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult client_mesh.ServiceReference1.FolderManager.BeginAddSharing(int ownerId, int friendId, string folder, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddSharing(ownerId, friendId, folder, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        client_mesh.ServiceReference1.WebResult client_mesh.ServiceReference1.FolderManager.EndAddSharing(System.IAsyncResult result) {
+            return base.Channel.EndAddSharing(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddSharing(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int ownerId = ((int)(inValues[0]));
+            int friendId = ((int)(inValues[1]));
+            string folder = ((string)(inValues[2]));
+            return ((client_mesh.ServiceReference1.FolderManager)(this)).BeginAddSharing(ownerId, friendId, folder, callback, asyncState);
+        }
+        
+        private object[] OnEndAddSharing(System.IAsyncResult result) {
+            client_mesh.ServiceReference1.WebResult retVal = ((client_mesh.ServiceReference1.FolderManager)(this)).EndAddSharing(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnAddSharingCompleted(object state) {
+            if ((this.AddSharingCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddSharingCompleted(this, new AddSharingCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddSharingAsync(int ownerId, int friendId, string folder) {
+            this.AddSharingAsync(ownerId, friendId, folder, null);
+        }
+        
+        public void AddSharingAsync(int ownerId, int friendId, string folder, object userState) {
+            if ((this.onBeginAddSharingDelegate == null)) {
+                this.onBeginAddSharingDelegate = new BeginOperationDelegate(this.OnBeginAddSharing);
+            }
+            if ((this.onEndAddSharingDelegate == null)) {
+                this.onEndAddSharingDelegate = new EndOperationDelegate(this.OnEndAddSharing);
+            }
+            if ((this.onAddSharingCompletedDelegate == null)) {
+                this.onAddSharingCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddSharingCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddSharingDelegate, new object[] {
+                        ownerId,
+                        friendId,
+                        folder}, this.onEndAddSharingDelegate, this.onAddSharingCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult client_mesh.ServiceReference1.FolderManager.BeginGetSharing(int userId, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetSharing(userId, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        client_mesh.ServiceReference1.WebResultOfArrayOfSharingBZq_SeKvr client_mesh.ServiceReference1.FolderManager.EndGetSharing(System.IAsyncResult result) {
+            return base.Channel.EndGetSharing(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetSharing(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int userId = ((int)(inValues[0]));
+            return ((client_mesh.ServiceReference1.FolderManager)(this)).BeginGetSharing(userId, callback, asyncState);
+        }
+        
+        private object[] OnEndGetSharing(System.IAsyncResult result) {
+            client_mesh.ServiceReference1.WebResultOfArrayOfSharingBZq_SeKvr retVal = ((client_mesh.ServiceReference1.FolderManager)(this)).EndGetSharing(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetSharingCompleted(object state) {
+            if ((this.GetSharingCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetSharingCompleted(this, new GetSharingCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetSharingAsync(int userId) {
+            this.GetSharingAsync(userId, null);
+        }
+        
+        public void GetSharingAsync(int userId, object userState) {
+            if ((this.onBeginGetSharingDelegate == null)) {
+                this.onBeginGetSharingDelegate = new BeginOperationDelegate(this.OnBeginGetSharing);
+            }
+            if ((this.onEndGetSharingDelegate == null)) {
+                this.onEndGetSharingDelegate = new EndOperationDelegate(this.OnEndGetSharing);
+            }
+            if ((this.onGetSharingCompletedDelegate == null)) {
+                this.onGetSharingCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSharingCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetSharingDelegate, new object[] {
+                        userId}, this.onEndGetSharingDelegate, this.onGetSharingCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult client_mesh.ServiceReference1.FolderManager.BeginGetReceiver(int userId, string folder, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetReceiver(userId, folder, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        client_mesh.ServiceReference1.WebResultOfArrayOfSharingDefinitiony8fP_SiTt client_mesh.ServiceReference1.FolderManager.EndGetReceiver(System.IAsyncResult result) {
+            return base.Channel.EndGetReceiver(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetReceiver(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int userId = ((int)(inValues[0]));
+            string folder = ((string)(inValues[1]));
+            return ((client_mesh.ServiceReference1.FolderManager)(this)).BeginGetReceiver(userId, folder, callback, asyncState);
+        }
+        
+        private object[] OnEndGetReceiver(System.IAsyncResult result) {
+            client_mesh.ServiceReference1.WebResultOfArrayOfSharingDefinitiony8fP_SiTt retVal = ((client_mesh.ServiceReference1.FolderManager)(this)).EndGetReceiver(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetReceiverCompleted(object state) {
+            if ((this.GetReceiverCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetReceiverCompleted(this, new GetReceiverCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetReceiverAsync(int userId, string folder) {
+            this.GetReceiverAsync(userId, folder, null);
+        }
+        
+        public void GetReceiverAsync(int userId, string folder, object userState) {
+            if ((this.onBeginGetReceiverDelegate == null)) {
+                this.onBeginGetReceiverDelegate = new BeginOperationDelegate(this.OnBeginGetReceiver);
+            }
+            if ((this.onEndGetReceiverDelegate == null)) {
+                this.onEndGetReceiverDelegate = new EndOperationDelegate(this.OnEndGetReceiver);
+            }
+            if ((this.onGetReceiverCompletedDelegate == null)) {
+                this.onGetReceiverCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetReceiverCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetReceiverDelegate, new object[] {
+                        userId,
+                        folder}, this.onEndGetReceiverDelegate, this.onGetReceiverCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult client_mesh.ServiceReference1.FolderManager.BeginDeleteSharing(int sharingId, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDeleteSharing(sharingId, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        client_mesh.ServiceReference1.WebResult client_mesh.ServiceReference1.FolderManager.EndDeleteSharing(System.IAsyncResult result) {
+            return base.Channel.EndDeleteSharing(result);
+        }
+        
+        private System.IAsyncResult OnBeginDeleteSharing(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int sharingId = ((int)(inValues[0]));
+            return ((client_mesh.ServiceReference1.FolderManager)(this)).BeginDeleteSharing(sharingId, callback, asyncState);
+        }
+        
+        private object[] OnEndDeleteSharing(System.IAsyncResult result) {
+            client_mesh.ServiceReference1.WebResult retVal = ((client_mesh.ServiceReference1.FolderManager)(this)).EndDeleteSharing(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnDeleteSharingCompleted(object state) {
+            if ((this.DeleteSharingCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.DeleteSharingCompleted(this, new DeleteSharingCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void DeleteSharingAsync(int sharingId) {
+            this.DeleteSharingAsync(sharingId, null);
+        }
+        
+        public void DeleteSharingAsync(int sharingId, object userState) {
+            if ((this.onBeginDeleteSharingDelegate == null)) {
+                this.onBeginDeleteSharingDelegate = new BeginOperationDelegate(this.OnBeginDeleteSharing);
+            }
+            if ((this.onEndDeleteSharingDelegate == null)) {
+                this.onEndDeleteSharingDelegate = new EndOperationDelegate(this.OnEndDeleteSharing);
+            }
+            if ((this.onDeleteSharingCompletedDelegate == null)) {
+                this.onDeleteSharingCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDeleteSharingCompleted);
+            }
+            base.InvokeAsync(this.onBeginDeleteSharingDelegate, new object[] {
+                        sharingId}, this.onEndDeleteSharingDelegate, this.onDeleteSharingCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -913,6 +1425,61 @@ namespace client_mesh.ServiceReference1 {
             public client_mesh.ServiceReference1.WebResultOfFileDefinitiony8fP_SiTt EndGetFileFrom(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 client_mesh.ServiceReference1.WebResultOfFileDefinitiony8fP_SiTt _result = ((client_mesh.ServiceReference1.WebResultOfFileDefinitiony8fP_SiTt)(base.EndInvoke("GetFileFrom", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginAddSharing(int ownerId, int friendId, string folder, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[3];
+                _args[0] = ownerId;
+                _args[1] = friendId;
+                _args[2] = folder;
+                System.IAsyncResult _result = base.BeginInvoke("AddSharing", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public client_mesh.ServiceReference1.WebResult EndAddSharing(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                client_mesh.ServiceReference1.WebResult _result = ((client_mesh.ServiceReference1.WebResult)(base.EndInvoke("AddSharing", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetSharing(int userId, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = userId;
+                System.IAsyncResult _result = base.BeginInvoke("GetSharing", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public client_mesh.ServiceReference1.WebResultOfArrayOfSharingBZq_SeKvr EndGetSharing(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                client_mesh.ServiceReference1.WebResultOfArrayOfSharingBZq_SeKvr _result = ((client_mesh.ServiceReference1.WebResultOfArrayOfSharingBZq_SeKvr)(base.EndInvoke("GetSharing", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetReceiver(int userId, string folder, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = userId;
+                _args[1] = folder;
+                System.IAsyncResult _result = base.BeginInvoke("GetReceiver", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public client_mesh.ServiceReference1.WebResultOfArrayOfSharingDefinitiony8fP_SiTt EndGetReceiver(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                client_mesh.ServiceReference1.WebResultOfArrayOfSharingDefinitiony8fP_SiTt _result = ((client_mesh.ServiceReference1.WebResultOfArrayOfSharingDefinitiony8fP_SiTt)(base.EndInvoke("GetReceiver", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginDeleteSharing(int sharingId, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = sharingId;
+                System.IAsyncResult _result = base.BeginInvoke("DeleteSharing", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public client_mesh.ServiceReference1.WebResult EndDeleteSharing(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                client_mesh.ServiceReference1.WebResult _result = ((client_mesh.ServiceReference1.WebResult)(base.EndInvoke("DeleteSharing", _args, result)));
                 return _result;
             }
         }

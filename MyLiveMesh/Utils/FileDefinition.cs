@@ -10,5 +10,6 @@ namespace MyLiveMesh.Utils
         public byte[] RawData { get; set; }
         public string Filename { get; set; }
         public string FileUri { get; set; }
+        public string MimeType { get; set; }
     }
 }
