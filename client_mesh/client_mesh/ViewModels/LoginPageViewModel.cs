@@ -43,6 +43,29 @@ namespace client_mesh.ViewModels
             }
         }
 
+        private string _email;
+
+        public string Email
+        {
+            get { return _email; }
+            set { 
+                _email = value;
+                RaisePropertyChange("Email");
+            }
+        }
+        
+
+        private bool _register;
+        public bool Register
+        {
+            get { return _register; }
+            set { 
+                _register = value;
+                RaisePropertyChange("Register");
+            }
+        }
+        
+
         private bool _logued;
         public bool Logued
         {
@@ -92,7 +115,14 @@ namespace client_mesh.ViewModels
 
         private void OnEndRegister(object sender, RegisterCompletedEventArgs args)
         {
-            Username = "Enregistrement";
+            if (args.Error == null)
+            {
+                if (args.Result.ErrorCode == WebResult.ErrorCodeList.SUCCESS)
+                {
+                    accountService.LoginAsync(Username, Password);
+                }
+                ErrorCode = args.Result.ErrorCode;
+            }
         }
         #endregion
 
@@ -100,7 +130,10 @@ namespace client_mesh.ViewModels
         private void LoginBody(string[] param)
         {
             //accountService.RegisterAsync("test", "test", "test");
-            accountService.LoginAsync(Username, Password);
+            if (Register)
+                accountService.RegisterAsync(Username, Email, Password);
+            else
+                accountService.LoginAsync(Username, Password);
         }
         #endregion
     }
